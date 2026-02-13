@@ -7,7 +7,8 @@
 }
 
 body {
-    background-color: #393E46;
+    /* background-color: #393E46; */
+    background-image: url(../asset/login-bg.png);
 
 }
 
@@ -54,7 +55,7 @@ ul {
 
 /* Body */
 .container {
-    margin: auto;
+    margin:5px auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,29 +63,38 @@ ul {
     width: 400px;
     flex-direction: column;
     gap: 15px;
-    /* background-color: rgba(219, 219, 161, 0.667); */
-    background-color: #948979;
-    /* color: white; */
+    background-color: #e9d3b4;
     color: black;
     border-radius: 20px;
     border: 4px solid black;
 }
+/* .sidebar{
+    background-color: #222831;
+    margin: 30px 10px;
+    padding: 20px 50px;
+    width: 45vw;
+    border-radius: 20px;
+}
+.sidebar img{
+    width: 120px;
+    margin: 10px;
+}
 
+.sidebar p{
+    padding: 8px 2px;
+    font-weight: bolder;
+} */
 .container p a {
     color: blue;
 }
 
-/* Form */
-form {
-    height: 600px;
-    display: flex;
-
-}
-
 .menu {
     display: flex;
-    padding: 14px;
-    gap: 24px;
+    padding: 15px 30px;
+    /* width: 40vw; */
+    /* margin: 30px; */
+    gap: 50px;
+    /* background-color: #666; */
 }
 
 label {

@@ -35,7 +35,7 @@
                         if (isAdmin()) {
                             echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
                         }
-                        echo " <div style='color:white;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
+                        echo " <div style='color:white;'>Hi, <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'>{$_SESSION['fullname']}</a>      <a href='logout.php'>Logout</a>";
                     } else {
                         echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
                     }?>

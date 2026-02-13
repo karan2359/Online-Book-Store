@@ -40,11 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="menu">
                 <div><a href="index.php">🏚️Home</a></div>
-                <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
                 <div class="center acc"><a href="signin.php">👤 SignIn</a></div>
             </div>
         </nav>
     </header>
+    <!-- <div class="sidebar">
+        <a href="index.php"> <img src="asset/logo cut.png" alt="Logo">  <p class="title">Book Store</p></a>
+    </div>
+     <div class="menu">
+                <div><a href="index.php">🏚️Home</a></div>
+                <div><a href="signin.php">👤 Sign In</a></div>
+    </div> -->
     <form method="POST">
      <div class="container">
     <h2>Login</h2>

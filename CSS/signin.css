@@ -7,8 +7,8 @@
         }
 
         body {
-            background-color: #393E46;
-
+            /* background-color: #393E46; */
+            background-image: url(../asset/login-bg.png);
         }
 
         .navbar {
@@ -51,14 +51,14 @@
 
         .container {
 
-            margin: 40px auto;
+            margin: 10px auto 5px;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 400px;
             flex-direction: column;
             gap: 15px;
-            background-color: #948979;
+            background-color: #e9d3b4;
             /* background-color: rgb(11, 20, 35); */
             border-radius: 20px;
             /* color: white; */

@@ -27,7 +27,7 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="orders.php">Orders</a></li>
-                    <li><a href="cart.php">Cart</a></li>
+                    <li><a href="cart.php">Carts</a></li>
                     <li><a href="#">Setting</a></li>
                     <li><a href="#">Feedback</a></li>
                     <li><a href="#">About US</a></li>
@@ -39,6 +39,8 @@
             <div class="acc-info">
                <p> Name: username</p>
                 <p>Mobile: 1234567890</p>
+
+
             </div>
             <div class="count">
                 <div class="ototal total">
