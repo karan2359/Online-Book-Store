@@ -22,9 +22,16 @@
                     <p class="title">Book Store</p></a>
             </div>
             <div class="menu">
-                <div class="search-bar"><input class="searchbar" type="text" placeholder="Search Bar" name="searchbar">
+                <div class="search-bar">
+                    <input class="searchbar" type="text" id="searchInput" 
+                    placeholder="🔍 Search by Name, Author, Category..." 
+                    onkeyup="searchBooks(this.value)">
+                    <div id="searchResults" style="position:absolute; background:white; width:300px; max-height:200px; overflow-y:auto; top:60px; display:none; z-index:1000; border-radius:10px; box-shadow:0 5px 20px rgba(0,0,0,0.2);"><!-- Live results here -->
+                    </div>
                 </div>
-                <div class="center card">
+                
+
+                <div class="card">
                     <a href="cart.php">🛒 Cart</a>
                     <a href="orders.php">Orders</a>
                 </div>
@@ -32,12 +39,13 @@
                     <?php 
                     include 'config.php';
                     if (isLoggedIn()) {
-                        if (isAdmin()) {
-                            echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
-                        }
-                        echo " <div style='color:white;'>Hi, <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'>{$_SESSION['fullname']}</a>      <a href='logout.php'>Logout</a>";
+                        // if (isAdmin()) {
+                        //     echo "<a href='admin/admin.php'>➕ Add Book</a>  ";
+                        // }
+                        echo " <div style='color:white;'> <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'>Account</a> <a href='logout.php'>Log out</a>";
+                        // echo " <div style='color:white;'> <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'>Hi, {$_SESSION['fullname']}</a> <a href='log out.php'>Logout</a>";
                     } else {
-                        echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
+                        echo "<a href='login.php'>Log in</a> | <a href='signin.php'>Sign Up</a>";
                     }?>
                </div>
 
@@ -189,6 +197,76 @@ while ($book = $stmt->fetch()) {
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
         });
+        // LIVE SEARCH - Name, Author, Category
+function searchBooks(query) {
+    const books = document.querySelectorAll('.book-card');
+    const resultsDiv = document.getElementById('searchResults');
+    let resultsHTML = '';
+    let visibleCount = 0;
+    
+    // Hide all books first
+    books.forEach(book => {
+        book.style.display = 'none';
+    });
+    
+    if (query.length < 2) {
+        resultsDiv.style.display = 'none';
+        return;
+    }
+    
+    // Search Logic
+    books.forEach(book => {
+        const title = book.querySelector('h3')?.textContent.toLowerCase() || '';
+        const author = book.querySelector('p strong')?.textContent.toLowerCase() || '';
+        const category = book.dataset.category.toLowerCase();
+        const searchTerm = query.toLowerCase();
+        
+        // Match Title OR Author OR Category
+        if (title.includes(searchTerm) || 
+            author.includes(searchTerm) || 
+            category.includes(searchTerm)) {
+            
+            book.style.display = 'block';
+            visibleCount++;
+            
+            // Add to dropdown results
+            const bookTitle = book.querySelector('h3').textContent;
+            const bookPrice = book.querySelector('.price').textContent;
+            resultsHTML += `
+                <div style="padding:12px; border-bottom:1px solid #eee; cursor:pointer; hover:background:#f0f0f0;"
+                     onclick="scrollToBook(${book.dataset.id})">
+                    <strong>${bookTitle.substring(0,30)}${bookTitle.length>30?'...':''}</strong><br>
+                    <small>${author.substring(0,20)}... | ₹${bookPrice}</small>
+                </div>
+            `;
+        }
+    });
+    
+    // Show results dropdown
+    resultsDiv.innerHTML = resultsHTML || '<div style="padding:15px; color:#999;">No books found</div>';
+    resultsDiv.style.display = resultsHTML ? 'block' : 'none';
+    
+    // Show count
+    document.getElementById('searchCount')?.textContent(`Found ${visibleCount} books`);
+}
+
+// Scroll to specific book
+function scrollToBook(bookId) {
+    const book = document.querySelector(`[data-id="${bookId}"]`);
+    if (book) {
+        book.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('searchInput').value = '';
+        document.getElementById('searchResults').style.display = 'none';
+    }
+}
+
+// Close search on outside click
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-bar')) {
+        document.getElementById('searchResults').style.display = 'none';
+    }
+});
+
     </script>
     </main>
     <footer>

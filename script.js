@@ -1,4 +1,3 @@
-// Place this code in script.js file
 let cart = [];
 
 // Filter books by category + subcategory
@@ -65,32 +64,32 @@ function addToCart(bookId, title, price) {
     });
 }
 
-// Update cart count badge in navbar
-function updateCartCount() {
-    fetch('get_cart.php')
-    .then(response => response.json())
-    .then(items => {
-        cart = items;
-        const totalQuantity = items.reduce((sum, item) => sum + parseInt(item.quantity), 0);
+// // Update cart count badge in navbar
+// function updateCartCount() {
+//     fetch('get_cart.php')
+//     .then(response => response.json())
+//     .then(items => {
+//         cart = items;
+//         const totalQuantity = items.reduce((sum, item) => sum + parseInt(item.quantity), 0);
         
-        // Update navbar cart count
-        let cartCount = document.querySelector('.cart-count');
-        if (!cartCount) {
-            // Create cart count if doesn't exist
-            const cartLink = document.querySelector('.card a');
-            if (cartLink) {
-                cartCount = document.createElement('span');
-                cartCount.className = 'cart-count';
-                cartCount.style.cssText = 'background:red;color:white;border-radius:50%;padding:2px 6px;font-size:12px;margin-left:5px;';
-                cartLink.appendChild(cartCount);
-            }
-        }
-        if (cartCount) {
-            cartCount.textContent = totalQuantity || 0;
-        }
-    })
-    .catch(error => console.error('Cart update error:', error));
-}
+//         // Update navbar cart count
+//         let cartCount = document.querySelector('.cart-count');
+//         if (!cartCount) {
+//             // Create cart count if doesn't exist
+//             const cartLink = document.querySelector('.card a');
+//             if (cartLink) {
+//                 cartCount = document.createElement('span');
+//                 cartCount.className = 'cart-count';
+//                 cartCount.style.cssText = 'background:red;color:white;border-radius:50%;padding:2px 6px;font-size:12px;margin-left:5px;';
+//                 cartLink.appendChild(cartCount);
+//             }
+//         }
+//         if (cartCount) {
+//             cartCount.textContent = totalQuantity || 0;
+//         }
+//     })
+//     .catch(error => console.error('Cart update error:', error));
+// }
 
 // Place order function
 function placeOrder() {

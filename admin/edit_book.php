@@ -55,6 +55,8 @@ if (isset($_POST['update_book'])) {
 <html>
 <head>
     <title>Edit Book - Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; font-family: "Roboto Slab", serif; }

@@ -15,23 +15,32 @@
     <div class="container">
         <aside class="sidebar">
             <div class="dash">
-                <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo"
-                            height="60px">
-                        <p class="title">Book Store</p>
-                    </a></div>
-               
-
+                <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo"height="60px"><p class="title">Book Store</p></a>
+                </div>
             </div>
             <hr>
             <nav class="navbar">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="orders.php">Orders</a></li>
-                    <li><a href="cart.php">Carts</a></li>
+                  
                     <li><a href="#">Setting</a></li>
-                    <li><a href="#">Feedback</a></li>
-                    <li><a href="#">About US</a></li>
-                    <li><a href="logout.php">Log out</a></li>
+                    <?php 
+                    include 'config.php';
+                    if (isLoggedIn()) {
+                        if (isAdmin()) {
+                            echo "<li><a href='admin/admin.php'> Manage Books</a>  </li>";
+                            echo "<li><a href='admin/User_feedback.php'> User Feedbacks</a>  </li>";
+                            echo "<li><a href='admin/orders_list.php'>Order List</a>  </li>";
+                            echo "<li><a href='admin/admin.php'> User List</a>  </li>";
+                        }else{
+                            // echo " <div style='color:white;'> <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'> Hi, {$_SESSION['fullname']}</a>";
+                            echo "  <li><a href='orders.php'>Orders</a></li>
+                            <li><a href='cart.php'>Carts</a></li>
+                            <li><a href='#'>Feedback</a></li>
+                            <li><a href='#'>About US</a></li>";
+                            }
+                    }?>
+                    <li style="margin-top:75px;"><a href="logout.php">Log out</a></li>
                 </ul>
             </nav>
         </aside>

@@ -146,7 +146,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px;
-            border: 1px solid #eee;
+            border: 1px solid #666;
             border-radius: 10px;
             margin-bottom: 10px;
             
@@ -220,7 +220,7 @@
 
             </div>
         </nav>
-    <!-- YOUR NAVBAR WITH ORDERS LINK -->
+
     
     <div class="orders-container">
         <div style=" display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
@@ -307,7 +307,7 @@
                     <?php endforeach; ?>
                 </div>
                 
-                <div style="border-top: 2px solid #eee; padding-top:20px;">
+                <div style="border-top: 2px solid #666; padding-top:20px;">
                     <div style="display: flex; justify-content: space-between; font-size:18px; font-weight:bold;">
                         <span>Total Amount:</span>
                         <span>₹<?= number_format($order['total_amount'], 2) ?></span>
