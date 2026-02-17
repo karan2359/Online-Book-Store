@@ -41,20 +41,12 @@ if (isset($_POST['add_book'])) {
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-    <header><nav class="navbar">
-            <div class="logo"><a href="../index.php"> <img src="../asset/logo cut.png" alt="logo" height="60px">
-                    <p class="title">Book Store</p></a>
-            </div>
-            <div class="menu">
-                <!-- <div><a href="../index.php">🏚️Home</a></div> -->
-                <div><a href="../Acc.php">Back</a></div>
-                <a href="logout.php">Logout</a>
-            </div>
-        </nav>
-
-    </header>
-
     <h1>Admin Control Panel</h1>
+            <div class="menu">
+                <div>
+                    <a href="../ACC.php" class="back-btn">← Back to Account</a>
+                </div>
+            </div>
     
     <!-- Add Book Form with Subcategory -->
     <div class="add-book">

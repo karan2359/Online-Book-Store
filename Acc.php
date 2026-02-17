@@ -30,13 +30,13 @@
                         if (isAdmin()) {
                             echo "<li><a href='admin/admin.php'> Manage Books</a>  </li>";
                             echo "<li><a href='admin/User_feedback.php'> User Feedbacks</a>  </li>";
-                            echo "<li><a href='admin/orders_list.php'>Order List</a>  </li>";
-                            echo "<li><a href='admin/admin.php'> User List</a>  </li>";
+                            echo "<li><a href='admin/admin_orders.php' class='admin-btn'>View All Orders</a></li>";
+                            echo "<li><a href='admin/User_list.php'> User List</a>  </li>";
                         }else{
                             // echo " <div style='color:white;'> <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'> Hi, {$_SESSION['fullname']}</a>";
                             echo "  <li><a href='orders.php'>Orders</a></li>
                             <li><a href='cart.php'>Carts</a></li>
-                            <li><a href='#'>Feedback</a></li>
+                            <li><a href='feedback.php'>Feedback</a></li>
                             <li><a href='#'>About US</a></li>";
                             }
                     }?>
