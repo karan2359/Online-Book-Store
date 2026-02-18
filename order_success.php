@@ -26,6 +26,8 @@ $order_details = $stmt->fetchAll();
 <html>
 <head>
     <title>Order Success - BookStore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body style="background: linear-gradient(135deg, #48bb78, #38a169); font-family: 'Roboto Slab', serif; color: white; padding: 40px; text-align: center;">

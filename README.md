@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `fullname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL UNIQUE,
   `password` varchar(255) NOT NULL,
-  `phone` varchar(20) DEFAULT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
   `is_admin` tinyint(1) DEFAULT 0,
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
 -- ===========================================
 
 -- Admin User (email: admin@bookstore.com, pass: admin123)
-INSERT INTO `users` (`fullname`, `email`, `password`, `phone`, `is_admin`) VALUES
+INSERT INTO `users` (`fullname`, `email`, `password`, `mobile`, `is_admin`) VALUES
 ('Admin User', 'admin@bookstore.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '9999999999', 1);
 
 

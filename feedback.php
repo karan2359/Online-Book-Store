@@ -20,6 +20,9 @@
         </nav>
     </header>
     <form action="index.php" method="post">
+        <input type="text" name="name" id="name">
+        <input type="tel">
+        <input type="email" name="email" id="email">
         
     </form>
 </body>

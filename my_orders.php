@@ -34,6 +34,9 @@ $orders = $stmt->fetchAll();
 <head>
     <title>My Orders - BookStore</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; font-family: "Roboto Slab", serif; }
         body { background: linear-gradient(135deg, #393E46, #4a5568); color: white; padding: 20px; }

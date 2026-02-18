@@ -33,10 +33,6 @@
 session_start();
 include '../config.php';
 
-if (!isAdmin()) {
-    header('Location: ../login.php');
-    exit;
-}
 
 $order_id = $_GET['id'] ?? 0;
 $stmt = $pdo->prepare("
@@ -60,6 +56,9 @@ $order_items = $items->fetchAll();
 <html>
 <head>
     <title>Order #<?= $order_id ?> - Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
         .order-header { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px; }

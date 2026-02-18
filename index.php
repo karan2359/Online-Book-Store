@@ -270,7 +270,14 @@ document.addEventListener('click', function(e) {
     </script>
     </main>
     <footer>
-        <p>&copy;Footer Page</p>
+        <ul>
+            <li><a href="">About Us </a></li>
+            <li>|</li>
+            <li><a href="feedback.php">Feedback </a></li>
+            <li>|</li>
+            <li><a href="Acc.php">Account</a></li>
+        </ul>
+        <p>&copy;Copyright 2026</p>
     </footer>
     
     <script src="script.js"></script>

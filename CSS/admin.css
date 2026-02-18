@@ -14,14 +14,14 @@
 
         }
         
-  .menu {
+        .menu {
             display: flex;
             padding: 14px;
             gap: 24px;
         }
 
         .add-book { 
-            max-width: 700px; 
+            max-width: 400px; 
             margin: 40px auto; 
             padding: 30px; 
             background: rgba(148, 137, 121, 0.2); 

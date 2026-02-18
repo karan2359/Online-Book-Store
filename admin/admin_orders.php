@@ -32,7 +32,9 @@ $orders = $stmt->fetchAll();
 <html>
 <head>
     <title>Admin Orders - BookStore</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -68,6 +70,7 @@ $orders = $stmt->fetchAll();
             border: 1px solid rgba(255,255,255,0.2);
         }
         .orders-table { 
+            color: white; 
             background: rgba(255,255,255,0.1); 
             backdrop-filter: blur(20px); 
             border-radius: 20px; 
