@@ -302,13 +302,6 @@
             transform: translateY(-3px);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar { padding: 1rem 3%; }
-            .nav-links { gap: 1rem; }
-            .cta-buttons { flex-direction: column; align-items: center; }
-            section { padding: 60px 3%; }
-        }
 
         /* Scroll behavior */
         html { scroll-behavior: smooth; }
@@ -318,7 +311,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.php" class="logo">Book<span>Store</span></a>
+            <a href="index.php" class="logo"><img src="asset/logo cut.png" alt="Logo" width="70px" > Book<span>Store</span></a>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="#story">Our Story</a></li>
@@ -348,13 +341,14 @@
                 <p>BookStore was born from a simple idea: make every book lover's dream come true. Starting in a small room with 100 books, we've grown into India's favorite online bookstore serving millions of readers across the country.</p>
                 <p>Our mission is to connect readers with stories that transform lives, spark imagination, and expand horizons. Every book on our shelf has been carefully selected to inspire, educate, and entertain.</p>
                 <ul style="margin-top: 2rem; padding-left: 2rem; color: #4a5568;">
-                    <li><i class="fas fa-check-circle" style="color: #48bb78; margin-right: 0.5rem;"></i>10+ Lakh Happy Readers</li>
-                    <li><i class="fas fa-check-circle" style="color: #48bb78; margin-right: 0.5rem;"></i>50,000+ Books Available</li>
+                    <li><i class="fas fa-check-circle" style="color: #48bb78; margin-right: 0.5rem;"></i>100+  Happy Readers</li>
+                    <li><i class="fas fa-check-circle" style="color: #48bb78; margin-right: 0.5rem;"></i>50+ Books Available</li>
                     <li><i class="fas fa-check-circle" style="color: #48bb78; margin-right: 0.5rem;"></i>Free Shipping India-wide</li>
                 </ul>
             </div>
             <div class="story-image">
-                <i class="fas fa-book-open-reader"></i>
+                <!-- <i class="fas fa-book-open-reader"></i> -->
+                 <img src="asset/readbook.jpg" alt="Readbook">
             </div>
         </div>
     </section>
@@ -394,26 +388,26 @@
             <div class="team-card">
                 <div class="team-avatar">K</div>
                 <h3>Karan Pardeshi</h3>
-                <div class="team-role">Founder & CEO</div>
-                <p>Passionate reader turned entrepreneur, building the future of reading in India.</p>
+                <div class="team-role">Leader & Web Developer</div>
+                <!-- <p>Passionate reader turned entrepreneur, building the future of reading in India.</p> -->
             </div>
             <div class="team-card">
                 <div class="team-avatar">A</div>
                 <h3>Abhishek More</h3>
-                <div class="team-role">Head Curator</div>
-                <p>Book enthusiast with 15+ years experience selecting the best reads for you.</p>
+                <div class="team-role">Documentation</div>
+                <!-- <p>Book enthusiast with 15+ years experience selecting the best reads for you.</p> -->
             </div>
             <div class="team-card">
                 <div class="team-avatar">R</div>
                 <h3>Rohit More</h3>
-                <div class="team-role">Tech Lead</div>
-                <p>Creating seamless shopping experience with cutting-edge technology.</p>
+                <div class="team-role">Data Collection</div>
+                <!-- <p>Creating seamless shopping experience with cutting-edge technology.</p> -->
             </div>
             <div class="team-card">
                 <div class="team-avatar">V</div>
                 <h3>Vaishnavi More</h3>
-                <div class="team-role">Tech Lead</div>
-                <p>Creating seamless shopping experience with cutting-edge technology.</p>
+                <div class="team-role">Data Collection</div>
+                <!-- <p>Creating seamless shopping experience with cutting-edge technology.</p> -->
             </div>
         </div>
     </section>
@@ -431,7 +425,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="logo" style="font-size: 2rem; margin-bottom: 1rem;">Book<span>Store</span></div>
+            <div class="logo" style="font-size: 2rem; margin-bottom: 1rem;"><img src="asset/logo cut.png" alt="Logo" width="90px" >Book<span>Store</span></div>
             <p style="max-width: 600px; margin: 0 auto 2rem; opacity: 0.8;">Your trusted destination for books, stories, and knowledge. Connecting readers across India since 2025.</p>
             
             <div class="footer-links">

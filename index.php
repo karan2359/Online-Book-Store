@@ -277,7 +277,7 @@ document.addEventListener('click', function(e) {
             <li>|</li>
             <li><a href="Acc.php">Account</a></li>
         </ul>
-        <p>&copy;Copyright 2026</p>
+        <p>&copy;2026 BookStore. All rights reserved. | Made with ❤️ for book lovers</p>
     </footer>
     
     <script src="script.js"></script>

@@ -47,7 +47,7 @@ $order_details = $stmt->fetchAll();
         
         <!-- Replace the Continue Shopping link with: -->
 <div style="margin-top: 30px;">
-    <a href="my_orders.php" style="background: #4299e1; color: white; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; margin-right: 15px;">📦 View My Orders</a>
+    <a href="orders.php" style="background: #4299e1; color: white; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px; margin-right: 15px;">📦 View My Orders</a>
     <a href="index.php" style="background: white; color: #38a169; padding: 18px 40px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 16px;">🏠 Continue Shopping</a>
 </div>
 

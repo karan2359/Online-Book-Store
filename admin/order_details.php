@@ -36,7 +36,7 @@ include '../config.php';
 
 $order_id = $_GET['id'] ?? 0;
 $stmt = $pdo->prepare("
-    SELECT o.*, u.fullname, u.email, u.phone
+    SELECT o.*, u.fullname, u.email, u.mobile
     FROM orders o JOIN users u ON o.user_id = u.id
     WHERE o.id = ?
 ");
@@ -90,7 +90,7 @@ $order_items = $items->fetchAll();
     <div class="order-header">
         <h2>Customer: <?= htmlspecialchars($order['fullname']) ?></h2>
         <p><strong>Email:</strong> <?= htmlspecialchars($order['email']) ?></p>
-        <p><strong>Phone:</strong> <?= $order['phone'] ?></p>
+        <p><strong>Phone:</strong> <?= $order['mobile'] ?></p>
         <p><strong>Date:</strong> <?= date('M d, Y H:i', strtotime($order['created_at'])) ?></p>
         <p><strong>Status:</strong> <span style="color:<?= $order['status']=='delivered'?'green':'orange' ?>"><?= ucfirst($order['status']) ?></span></p>
     </div>

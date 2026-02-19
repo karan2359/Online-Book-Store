@@ -57,7 +57,7 @@ $avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
                             echo "  <li><a href='orders.php'>Orders</a></li>
                             <li><a href='cart.php'>Carts</a></li>
                             <li><a href='feedback.php'>Feedback</a></li>
-                            <li><a href='#'>About US</a></li>";
+                            <li><a href='about.php'>About US</a></li>";
                             }
                     }?>
                     <li style="margin-top:75px;"><a href="logout.php">Log out</a></li>
@@ -88,7 +88,7 @@ $avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
                     </div>
                     
                     <?php if ($user['is_admin']): ?>
-                    <div class="detail-card">
+                    <div>
                         <div class="detail-label">Role</div>
                         <div class="detail-value" style="color: #ed8936;">Admin</div>
                     </div>
@@ -131,7 +131,7 @@ $avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
             <div class="stat-card">
                 <div class="stat-icon">⭐</div>
                 <h3>Member</h3>
-                <p>Since <?= date('M Y', strtotime($user['created_at'])) ?></p>
+                <p>Since : <?= date(' d M, Y', strtotime($user['created_at'])) ?></p>
             </div>
         </div>
             </div>
