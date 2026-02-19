@@ -271,7 +271,7 @@ document.addEventListener('click', function(e) {
     </main>
     <footer>
         <ul>
-            <li><a href="">About Us </a></li>
+            <li><a href="about.php">About Us </a></li>
             <li>|</li>
             <li><a href="feedback.php">Feedback </a></li>
             <li>|</li>
