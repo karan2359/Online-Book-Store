@@ -55,8 +55,7 @@ header("Refresh:5; url=index.php");
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            /* background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff15"/><stop offset="100%" stop-color="%23ffffff00"/></radialGradient></defs><circle cx="20" cy="20" r="2" fill="url(%23a)"><animate attributeName="r" values="2;3;2" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="url(%23a)"><animate attributeName="r" values="1.5;2.5;1.5" dur="4s" repeatCount="indefinite"/></circle><circle cx="40" cy="80" r="2.5" fill="url(%23a)"><animate attributeName="r" values="2.5;3.5;2.5" dur="3.5s" repeatCount="indefinite"/></circle></svg>'); */
+            height: 100%
             animation: float 20s ease-in-out infinite;
         }
         

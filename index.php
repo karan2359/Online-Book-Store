@@ -123,7 +123,7 @@
 $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
 while ($book = $stmt->fetch()) {
     $subcategory = explode(',', $book['subcategory'] ?? $book['category'])[0];
-    echo "<div class='books-gridd'>
+    echo "<div class='books-gridd' >
     <div class='book-card' 
          data-category='{$book['category']}' 
          data-subcategory='{$subcategory}'
