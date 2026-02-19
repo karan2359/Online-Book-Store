@@ -392,20 +392,26 @@
         <h2 class="section-title">Meet Our Team</h2>
         <div class="team-grid">
             <div class="team-card">
-                <div class="team-avatar">A</div>
-                <h3>Arjun Sharma</h3>
+                <div class="team-avatar">K</div>
+                <h3>Karan Pardeshi</h3>
                 <div class="team-role">Founder & CEO</div>
                 <p>Passionate reader turned entrepreneur, building the future of reading in India.</p>
             </div>
             <div class="team-card">
-                <div class="team-avatar">P</div>
-                <h3>Priya Patel</h3>
+                <div class="team-avatar">A</div>
+                <h3>Abhishek More</h3>
                 <div class="team-role">Head Curator</div>
                 <p>Book enthusiast with 15+ years experience selecting the best reads for you.</p>
             </div>
             <div class="team-card">
                 <div class="team-avatar">R</div>
-                <h3>Rahul Mehta</h3>
+                <h3>Rohit More</h3>
+                <div class="team-role">Tech Lead</div>
+                <p>Creating seamless shopping experience with cutting-edge technology.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">V</div>
+                <h3>Vaishnavi More</h3>
                 <div class="team-role">Tech Lead</div>
                 <p>Creating seamless shopping experience with cutting-edge technology.</p>
             </div>
