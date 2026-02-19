@@ -61,7 +61,7 @@ $orders = $stmt->fetchAll();
             margin-bottom: 30px; 
         }
         .stat-card { 
-            background-color:#e9d3b4; 
+            background-color: #e9d3b4b5;  
             /* background: rgba(255,255,255,0.15);  */
             backdrop-filter: blur(20px); 
             padding: 25px; 
@@ -70,7 +70,7 @@ $orders = $stmt->fetchAll();
             border: 1px solid rgba(255,255,255,0.2);
         }
         .orders-table { 
-            color: white; 
+            color: #d0d0d0;  
             background: rgba(255,255,255,0.1); 
             backdrop-filter: blur(20px); 
             border-radius: 20px; 

@@ -60,7 +60,7 @@ $users = $stmt->fetchAll();
             margin-bottom: 30px; 
         }
         .stat-card { 
-            background:#e9d3b4; 
+            background-color: #e9d3b4b5;  
             backdrop-filter: blur(20px); 
             padding: 25px; 
             border-radius: 20px; 
@@ -87,7 +87,7 @@ $users = $stmt->fetchAll();
         th { 
             background: rgba(255,255,255,0.2); 
             font-weight: 500; 
-            color: white; 
+            color: #d0d0d0;  
             text-transform: uppercase; 
             font-size: 14px; 
             letter-spacing: 1px; }

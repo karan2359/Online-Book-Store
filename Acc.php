@@ -1,3 +1,23 @@
+<?php
+session_start();
+include 'config.php';
+
+
+
+// Fetch user info
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+$stmt->execute([$_SESSION['user_id']]);
+$user = $stmt->fetch();
+
+if (!$user) {
+    session_destroy();
+    header('Location: login.php');
+    exit;
+}
+
+// Avatar logic (first letter of name)
+$avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,13 +43,13 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                   
-                    <li><a href="#">Setting</a></li>
+                    <li><a href="update_profile.php">Edit</a></li>
                     <?php 
-                    include 'config.php';
+                    
                     if (isLoggedIn()) {
                         if (isAdmin()) {
                             echo "<li><a href='admin/admin.php'> Manage Books</a>  </li>";
-                            echo "<li><a href='admin/User_feedback.php'> User Feedbacks</a>  </li>";
+                            echo "<li><a href='admin/website_feedback.php'> User Feedbacks</a>  </li>";
                             echo "<li><a href='admin/admin_orders.php' class='admin-btn'>View All Orders</a></li>";
                             echo "<li><a href='admin/User_list.php'> User List</a>  </li>";
                         }else{
@@ -46,21 +66,80 @@
         </aside>
         <div class="sesions">
             <div class="acc-info">
-               <p> Name: username</p>
-                <p>Mobile: 1234567890</p>
-
-
+              <div class="profile-header">
+            <!-- LEFT: User Information -->
+            <div class="user-info">
+                <h1 class="user-name"> Name:<?= htmlspecialchars($user['fullname']) ?></h1>
+                
+                <div class="user-details">
+                    <div class="detail-card">
+                        <div class="detail-label">Email</div>
+                        <div class="detail-value"><?= htmlspecialchars($user['email']) ?></div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-label">Mobile</div>
+                        <div class="detail-value"><?= $user['mobile'] ?: 'Not provided' ?></div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-label">City/State</div>
+                        <div class="detail-value"><?= $user['city'] ?: 'Not provided' ?>,</div>
+                        <div class="detail-value"><?= $user['state'] ?: 'Not provided' ?></div>
+                    </div>
+                    
+                    <?php if ($user['is_admin']): ?>
+                    <div class="detail-card">
+                        <div class="detail-label">Role</div>
+                        <div class="detail-value" style="color: #ed8936;">Admin</div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            
+            <!-- RIGHT: Avatar -->
+            <div style="flex-shrink: 0;">
+                <div class="user-avatar"><?= $avatar_initial ?></div>
+            </div>
+        </div>
             </div>
             <div class="count">
-                <div class="ototal total">
-                    <p><a href="#">Orders :</a></p>
-                </div>
-                <div class="ctotal total">
-                    <p><a href="#">Carts :</a></p>
-                </div>
+                 <div class="stats-grid">
+            <?php
+            // Orders count
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM orders WHERE user_id = ?");
+            $stmt->execute([$_SESSION['user_id']]);
+            $order_count = $stmt->fetchColumn();
+            
+            // Total spent
+            $stmt = $pdo->prepare("SELECT SUM(total_amount) FROM orders WHERE user_id = ? AND status != 'cancelled'");
+            $stmt->execute([$_SESSION['user_id']]);
+            $total_spent = $stmt->fetchColumn() ?: 0;
+            ?>
+            
+            <div class="stat-card">
+                <div class="stat-icon">🛒</div>
+                <h3><?= $order_count ?></h3>
+                <p>Total Orders</p>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <h3>₹<?= number_format($total_spent, 2) ?></h3>
+                <p>Total Spent</p>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <h3>Member</h3>
+                <p>Since <?= date('M Y', strtotime($user['created_at'])) ?></p>
+            </div>
+        </div>
             </div>
         </div>
     </div>
 </body>
 
 </html>
+
+
+
