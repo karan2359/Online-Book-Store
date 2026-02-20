@@ -39,7 +39,7 @@ header("Refresh:5; url=index.php");
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #667eeac9 0%, #764ba2b5 50%, #f193fbb7 100%);
             height: 100vh;
             display: flex;
             align-items: center;

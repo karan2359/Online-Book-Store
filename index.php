@@ -39,11 +39,9 @@
                     <?php 
                     include 'config.php';
                     if (isLoggedIn()) {
-                        // if (isAdmin()) {
-                        //     echo "<a href='admin/admin.php'>➕ Add Book</a>  ";
-                        // }
+                       
                         echo " <div style='color:white;'> <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'>Account</a> <a href='logout.php'>Log out</a>";
-                        // echo " <div style='color:white;'> <a href ='Acc.php' style='padding: 0px 15px 0px 0px;'>Hi, {$_SESSION['fullname']}</a> <a href='log out.php'>Logout</a>";
+                
                     } else {
                         echo "<a href='login.php'>Log in</a> | <a href='signin.php'>Sign Up</a>";
                     }?>
@@ -53,85 +51,31 @@
         </nav>
 
 <ul class="category">
-    <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
-            <li class="dropdown list" onclick="filterBooks('Fiction', '')">Fiction
-                <ul>
-                    <li class="a "  onclick="filterBooks('Fiction', 'Classics')">Classics</li>                  
-                    <li  class="a " onclick="filterBooks('Fiction', 'Mythological')">Mythological</li>
-                </ul>
-            </li>
-            <li  class="dropdown list" onclick="filterBooks('Non-Fiction', '')">Non-Fiction
-                <ul>
-                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Self Improvement')">Self Improvement</li>
-                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Biography')">Biography</li>
-                    <!-- <li><a href="#"></a></li> class="a " 
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li> -->
-                </ul>
-            </li>
-            <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics
-                <ul>              
-                    <li  class="a " onclick="filterBooks('Academics', 'Competitive Exam')">Competitive Exam</li>
-                    <li class="a "  onclick="filterBooks('Academics', 'Entrance exam')">Entrance exam</li>
-                    <li class="a "  onclick="filterBooks('Academics', 'School')"> School</li>
-                    <li class="a "  onclick="filterBooks('Academics', 'General Knowledge')"> General Knowledge</li>
-                    <!-- <li><a href="#"></a></li> -->
-                </ul>
-            </li>
-            
-            <li class="dropdown list" onclick="filterBooks('Kids', '')">Kids
-            <ul>
-                <li  class="a"  onclick="filterBooks('Kids', 'Activity &amp; Puzzles','Activity','Puzzles')"> Activity &amp; Puzzles</li>
-                <!-- <li><a href="#">Activity &amp; Puzzles</a></li> -->
-                <li  class="a"  onclick="filterBooks('Kids', 'Colouring &amp; Art book ','Colouring','Art book')"> Colouring &amp; Art book </li>
-                <li  class="a"  onclick="filterBooks('Kids', 'Essay &amp; Letter ','Essay','Letter')"> Essay &amp; Letter </li>
-                <li  class="a"  onclick="filterBooks('Kids', 'Work Book')">Work Book</li>
-                <!-- <li   class="a"  onclick="filterBooks('Kids', 'General Knowledge')">General Knowledge</li>                     -->
-                </ul>
-            </li>
-            <li class="dropdown list" onclick="filterBooks('Adults', '')">Adults
-                <ul>
-                    <li  class="a"  onclick="filterBooks('Adults', 'Crime')">Crime</li>
-                    <li  class="a"  onclick="filterBooks('Adults', 'Mystery Thriller')">Mystery Thriller</li>
-                    <lI  class="a"  onclick="filterBooks('Adults', 'Gen Fiction')">Gen Fiction</li>                    
-                    <li  class="a"  onclick="filterBooks('Adults', 'Fantasy Science Fiction')">Fantasy Science Fiction</li>                   
-                    <li  class="a"  onclick="filterBooks('Adults', 'Horror')">Horror</li>
-                </ul>
-            </li>
-
-                <li class="dropdown list" onclick="filterBooks('Comics', '')">Comics
-                <ul>
-                    <li class="a"  onclick="filterBooks('Comics', 'Superhero Comics')">Superhero Comics</li>
-                    <li  class="a" onclick="filterBooks('Comics', 'Manga Comics')">Manga Comics</li>
-                    <li class="a"  onclick="filterBooks('Comics', 'Horror Comics')">Horror Comics</li>
-                    <!-- <li><a href="#"></a></li>
-                        <li><a href="#"></a></li> -->
-                </ul>
-            </li>
-            <li class="dropdown list" onclick="filterBooks('Regional Books', '')">Regional Books
-                <ul>
-                    <li  class="a" onclick="filterBooks('', 'Marathi')">Marathi</li>
-                    <li  class="a" onclick="filterBooks('Regional Books', 'Hindi')">Hindi</li>
-                    <li  class="a" onclick="filterBooks('Regional Books', 'Gujarati')">Gujarati</li>
-                </ul>
-            </li>
+    <li class="dropdown list" onclick="filterBooks('All')" class="active"> All Books</li>
+    <li class="dropdown list" onclick="filterBooks('Fiction')">Fiction</li>
+    <li  class="dropdown list" onclick="filterBooks('Non-Fiction')">Non-Fiction</li>
+    <li class="dropdown list" onclick="filterBooks('Academics')">Academics</li>            
+    <li class="dropdown list" onclick="filterBooks('Kids')">Kids</li>
+    <li class="dropdown list" onclick="filterBooks('Adults')">Adults</li>
+    <li class="dropdown list" onclick="filterBooks('Comics')">Comics</li>
+    <li class="dropdown list" onclick="filterBooks('Regional Books')">Regional Books</li>
 </ul>
 </header>
     <main>
 <div class="books-grid" id="booksContainer">
 <?php
 $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
-while ($book = $stmt->fetch()) {
-    $subcategory = explode(',', $book['subcategory'] ?? $book['category'])[0];
+$booksArray = []; // For JS access
+while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $booksArray[] = $book; // Store for quick view
+    $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT); // Safe JSON
     echo "<div class='books-gridd'>
-    <div class='book-card' 
-         data-category='{$book['category']}' 
-         data-subcategory='{$subcategory}'
-         data-id='{$book['id']}'>
+    <div class='book-card' data-category='{$book['category']}' data-id='{$book['id']}'
+    onclick='openQuickView(" . $safeBook . ")' style='cursor:pointer;'>
         <img src='{$book['image']}' alt='{$book['title']}'>
 
             <div class='book-info'>
-                <div class='subcategory-tag'>{$book['category']} / {$subcategory}</div>
+                <div class='subcategory-tag'>Category:{$book['category']} </div>
                 <h3>{$book['title']}</h3>
                 <p><strong>✍️ {$book['author']}</strong></p>
                 <p>🏢 {$book['publisher']}</p>
@@ -143,7 +87,9 @@ while ($book = $stmt->fetch()) {
     </div>";
 }
 ?>
+<script>window.books = <?php echo json_encode($booksArray); ?>;</script>
 </div>
+
 
     </div>
 
@@ -281,5 +227,132 @@ document.addEventListener('click', function(e) {
     </footer>
     
     <script src="script.js"></script>
+    <!-- Quick View Modal -->
+<div id="quickViewModal" class="quick-view-modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeQuickView()"></div>
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeQuickView()">&times;</span>
+        <div class="qv-book-details">
+            <img id="qvBookImage" src="" alt="Book Cover" class="qv-image">
+            <div class="qv-info">
+                <p><h2 id="qvTitle"></h2></p>
+                <p><strong>Author:</strong> <span id="qvAuthor"></span></p>
+                <p><strong>Publisher:</strong> <span id="qvPublisher"></span></p>
+                <p><strong>Category:</strong> <span id="qvCategory"></span></p>
+                <p><strong>Price:</strong> <span id="qvPrice" class="price"></span></p>
+                <div id="qvDescription" class="description"></div>
+                <div class="qv-actions">
+    <button onclick="addToCartSilent()" class="btn-add-cart">🛒 Add to Cart</button>
+    <button onclick="placeOrderDirect()" class="btn-buy">🚀 Place Order</button>
+</div>
+
+            </div>
+        </div>
+        <div class="qv-suggestions">
+            <h3>More Suggestions</h3>
+            <div id="qvSuggestions" class="suggestion-grid"></div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+// FIXED Quick View Functions - No alerts + Direct Order
+function openQuickView(book) {
+    document.getElementById('qvTitle').textContent = book.title || 'N/A';
+    document.getElementById('qvAuthor').textContent = book.author || 'N/A';
+    document.getElementById('qvPublisher').textContent = book.publisher || 'N/A';
+    document.getElementById('qvCategory').textContent = book.category || 'N/A';
+    document.getElementById('qvPrice').textContent = '₹' + (book.price || 0);
+    document.getElementById('qvDescription').textContent = book.description || 'No description available.';
+    document.getElementById('qvBookImage').src = book.image || 'asset/no-image.png';
+    
+    // Store current book ID globally for cart/order
+    window.currentQuickViewBook = book;
+    
+    loadSuggestions(book.category, book.id);
+    document.getElementById('quickViewModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeQuickView() {
+    document.getElementById('quickViewModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// ✅ SILENT Add to Cart - NO ALERT
+function addToCartSilent() {
+    const book = window.currentQuickViewBook;
+    if (!book || !book.id) return;
+    
+    const btn = event.target;
+    const originalText = btn.textContent;
+    
+    // Immediate visual feedback
+    btn.textContent = '⏳ Adding...';
+    btn.disabled = true;
+    
+    fetch('add_to_cart.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `book_id=${book.id}&quantity=1`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update cart count silently
+            updateCartCount();
+            // Success feedback
+            btn.textContent = '✅ Added!';
+            btn.style.background = '#38a169';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+            }, 2000);
+        } else {
+            btn.textContent = '❌ Error';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+    })
+    .catch(() => {
+        btn.textContent = '❌ Failed';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 1500);
+    });
+}
+
+
+function loadSuggestions(category, excludeId) {
+    const suggestions = window.books.filter(b => 
+        b.category === category && parseInt(b.id) !== parseInt(excludeId)
+    ).slice(0, 4);
+    
+    const container = document.getElementById('qvSuggestions');
+    container.innerHTML = '';
+    suggestions.forEach(book => {
+        const card = document.createElement('div');
+        card.className = 'suggestion-card';
+        card.onclick = () => openQuickView(book);
+        card.style.cursor = 'pointer';
+        card.innerHTML = `
+            <img src="${book.image}" alt="${book.title}">
+            <h4>${book.title.substring(0,25)}${book.title.length>25?'...':''}</h4>
+            <p>₹${book.price}</p>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// ESC to close
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeQuickView();
+});
+</script>
 </body>
 </html>

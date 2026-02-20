@@ -25,9 +25,9 @@ if (isset($_POST['add_book'])) {
     }
     
     // ✅ INSERT with subcategory
-    $stmt = $pdo->prepare("INSERT INTO books (title, author, publisher, category, subcategory, price, description, image, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-    $stmt->execute([$title, $author, $publisher, $category, $subcategory, $price, $description, $image]);
-    echo "<div class='success'>✅ Book '$title' ($category > $subcategory) added successfully!</div>";
+    $stmt = $pdo->prepare("INSERT INTO books (title, author, publisher, category, subcategory, price, description, image, created_at) VALUES (?, ?, ?, ?, null, ?, ?, ?, NOW())");
+    $stmt->execute([$title, $author, $publisher, $category, $price, $description, $image]);
+    echo "<div class='success'>✅ Book '$title' ($category ) added successfully!</div>";
 }
 ?>
 
@@ -75,10 +75,10 @@ if (isset($_POST['add_book'])) {
                 <option value="Regional Books"> Regional Books</option>
             </select>
             
-            <label>📋 Subcategory</label>
+            <!-- <label>📋 Subcategory</label>
             <select name="subcategory" id="subcategorySelect" required>
                 <option value="">First select category</option>
-            </select>
+            </select> -->
             
             <label>💰 Price (₹)</label>
             <input type="number" name="price" step="0.01" min="0" placeholder="99.99" required>
@@ -121,15 +121,15 @@ if (isset($_POST['add_book'])) {
         const category = document.getElementById('categorySelect').value;
         const subcatSelect = document.getElementById('subcategorySelect');
         
-        const subcategories = {
-            'Fiction': ['Classics', 'Mythological'],
-            'Non-Fiction': ['Self Improvement', 'Biography'],
-            'Academics': ['Competitive Exam', 'Entrance exam', 'School', 'General Knowledge'],
-            'Kids': ['Activity & Puzzles', 'Colouring & Art book', 'Essay & Letter', 'Work Book'],
-            'Adults': ['Crime', 'Mystery Thriller', 'Gen Fiction', 'Fantasy Science Fiction', 'Horror'],
-            'Comics': ['Superhero Comics', 'Manga Comics', 'Horror Comics'],
-            'Regional Books': ['Marathi', 'Hindi', 'Gujarati']
-        };
+        // const subcategories = {
+        //     'Fiction': ['Classics', 'Mythological'],
+        //     'Non-Fiction': ['Self Improvement', 'Biography'],
+        //     'Academics': ['Competitive Exam', 'Entrance exam', 'School', 'General Knowledge'],
+        //     'Kids': ['Activity & Puzzles', 'Colouring & Art book', 'Essay & Letter', 'Work Book'],
+        //     'Adults': ['Crime', 'Mystery Thriller', 'Gen Fiction', 'Fantasy Science Fiction', 'Horror'],
+        //     'Comics': ['Superhero Comics', 'Manga Comics', 'Horror Comics'],
+        //     'Regional Books': ['Marathi', 'Hindi', 'Gujarati']
+        // };
         
         subcatSelect.innerHTML = '<option value="">Select Subcategory</option>';
         if (subcategories[category]) {

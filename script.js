@@ -1,20 +1,18 @@
 let cart = [];
 
 // Filter books by category + subcategory
-function filterBooks(mainCategory, subcategory = '') {
+function filterBooks(mainCategory) {
     const books = document.querySelectorAll('.book-card');
     let visibleCount = 0;
     
     books.forEach(book => {
         const bookCategory = book.dataset.category;
-        const bookSubcategory = book.dataset.subcategory || '';
         
         if (mainCategory === 'All') {
             book.style.display = 'block';
             visibleCount++;
         } 
-        else if (mainCategory === bookCategory && 
-                (subcategory === '' || subcategory === bookSubcategory)) {
+        else if (mainCategory === bookCategory) {
             book.style.display = 'block';
             visibleCount++;
         } 
@@ -29,7 +27,7 @@ function filterBooks(mainCategory, subcategory = '') {
     });
     if (event) event.target.classList.add('active');
     
-    console.log(`${visibleCount} books shown for ${mainCategory}/${subcategory}`);
+    console.log(`${visibleCount} books shown for ${mainCategory}`);
 }
 
 // Add to cart function
@@ -63,33 +61,6 @@ function addToCart(bookId, title, price) {
         alert('❌ Network error. Please try again.');
     });
 }
-
-// // Update cart count badge in navbar
-// function updateCartCount() {
-//     fetch('get_cart.php')
-//     .then(response => response.json())
-//     .then(items => {
-//         cart = items;
-//         const totalQuantity = items.reduce((sum, item) => sum + parseInt(item.quantity), 0);
-        
-//         // Update navbar cart count
-//         let cartCount = document.querySelector('.cart-count');
-//         if (!cartCount) {
-//             // Create cart count if doesn't exist
-//             const cartLink = document.querySelector('.card a');
-//             if (cartLink) {
-//                 cartCount = document.createElement('span');
-//                 cartCount.className = 'cart-count';
-//                 cartCount.style.cssText = 'background:red;color:white;border-radius:50%;padding:2px 6px;font-size:12px;margin-left:5px;';
-//                 cartLink.appendChild(cartCount);
-//             }
-//         }
-//         if (cartCount) {
-//             cartCount.textContent = totalQuantity || 0;
-//         }
-//     })
-//     .catch(error => console.error('Cart update error:', error));
-// }
 
 // Place order function
 function placeOrder() {
@@ -137,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Global functions for login/logout (add to your existing code)
+// Global functions for login/logout 
 function isLoggedIn() {
     // Check session (you'll implement PHP check)
     return localStorage.getItem('loggedIn') === 'true';
@@ -241,3 +212,116 @@ function showNotification(message, type) {
         toast.remove();
     }, 3000);
 }
+ // Filter by Category
+        function filterBooks(mainCategory) {
+            const books = document.querySelectorAll('.book-card');
+            let visibleCount = 0;
+            
+            books.forEach(book => {
+                const bookCategory = book.dataset.category;
+
+                
+                if (mainCategory === 'All') {
+                    book.style.display = 'block';
+                    visibleCount++;
+                } 
+                else {
+                    book.style.display = 'none';
+                }
+            });
+                  
+            // Show result count
+            document.getElementById('resultCount').textContent = 
+                visibleCount + ' books found';
+        }
+
+        // Add to cart with category info
+        function addToCart(bookId, title, price, category) {
+            // Your existing cart logic
+            fetch('add_to_cart.php', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `book_id=${bookId}&quantity=1`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`✅ ${title} added to cart!`);
+                    updateCartCount();
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+        // LIVE SEARCH - Name, Author, Category
+function searchBooks(query) {
+    const books = document.querySelectorAll('.book-card');
+    const resultsDiv = document.getElementById('searchResults');
+    let resultsHTML = '';
+    let visibleCount = 0;
+    
+    // Hide all books first
+    books.forEach(book => {
+        book.style.display = 'none';
+    });
+    
+    if (query.length < 2) {
+        resultsDiv.style.display = 'none';
+        return;
+    }
+    
+    // Search Logic
+    books.forEach(book => {
+        const title = book.querySelector('h3')?.textContent.toLowerCase() || '';
+        const author = book.querySelector('p strong')?.textContent.toLowerCase() || '';
+        const category = book.dataset.category.toLowerCase();
+        const searchTerm = query.toLowerCase();
+        
+        // Match Title OR Author OR Category
+        if (title.includes(searchTerm) || 
+            author.includes(searchTerm) || 
+            category.includes(searchTerm)) {
+            
+            book.style.display = 'block';
+            visibleCount++;
+            
+            // Add to dropdown results
+            const bookTitle = book.querySelector('h3').textContent;
+            const bookPrice = book.querySelector('.price').textContent;
+            resultsHTML += `
+                <div style="padding:12px; border-bottom:1px solid #eee; cursor:pointer; hover:background:#f0f0f0;"
+                     onclick="scrollToBook(${book.dataset.id})">
+                    <strong>${bookTitle.substring(0,30)}${bookTitle.length>30?'...':''}</strong><br>
+                    <small>${author.substring(0,20)}... | ₹${bookPrice}</small>
+                </div>
+            `;
+        }
+    });
+    
+    // Show results dropdown
+    resultsDiv.innerHTML = resultsHTML || '<div style="padding:15px; color:#999;">No books found</div>';
+    resultsDiv.style.display = resultsHTML ? 'block' : 'none';
+    
+    // Show count
+    document.getElementById('searchCount')?.textContent(`Found ${visibleCount} books`);
+}
+
+// Scroll to specific book
+function scrollToBook(bookId) {
+    const book = document.querySelector(`[data-id="${bookId}"]`);
+    if (book) {
+        book.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('searchInput').value = '';
+        document.getElementById('searchResults').style.display = 'none';
+    }
+}
+
+// Close search on outside click
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-bar')) {
+        document.getElementById('searchResults').style.display = 'none';
+    }
+});

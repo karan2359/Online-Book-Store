@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box;font-family: "Roboto Slab", serif; }
         body { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-color: #393E46;
             min-height: 100vh; padding: 20px;
         }
         .edit-container { 
@@ -26,7 +26,7 @@
             margin-bottom: 30px; 
             font-weight: 500;
         }
-        .success { background: rgba(72,187,120,0.3); color: #2f855a; }
+        .success { background: rgba(72,187,120,0.3); color: white; }
         .error { background: rgba(245,101,101,0.3); color: #c53030; }
         .form-grid { 
             display: grid; 

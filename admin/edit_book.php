@@ -43,8 +43,8 @@ if (isset($_POST['update_book'])) {
         }
     }
     
-    $stmt = $pdo->prepare("UPDATE books SET title=?, author=?, publisher=?, category=?, subcategory=?, price=?, description=?, image=? WHERE id=?");
-    $stmt->execute([$title, $author, $publisher, $category, $subcategory, $price, $description, $image, $id]);
+    $stmt = $pdo->prepare("UPDATE books SET title=?, author=?, publisher=?, category=?, subcategory=null, price=?, description=?, image=? WHERE id=?");
+    $stmt->execute([$title, $author, $publisher, $category, $price, $description, $image, $id]);
     
     header('Location: admin.php?updated=1');
     exit;
@@ -78,7 +78,7 @@ if (isset($_POST['update_book'])) {
         
         <div class="book-preview">
             <img src="../<?php echo htmlspecialchars($book['image']); ?>" alt="Current book cover">
-            <p>Current: <?php echo htmlspecialchars($book['category']); ?> / <?php echo htmlspecialchars($book['subcategory']); ?></p>
+            <p>Current: <?php echo htmlspecialchars($book['category']); ?> </p>
         </div>
         
         <form method="POST" action="edit_book.php?id=<?php echo $id; ?>" enctype="multipart/form-data">
@@ -103,8 +103,8 @@ if (isset($_POST['update_book'])) {
                 <option value="Regional Books" <?php echo $book['category']=='Regional Books'?'selected':'';?>>🌍 Regional Books</option>
             </select>
             
-            <label>📋 Subcategory</label>
-            <input type="text" name="subcategory" value="<?php echo htmlspecialchars($book['subcategory']); ?>" placeholder="Enter subcategory" required>
+            <!-- <label>📋 Subcategory</label>
+            <input type="text" name="subcategory" value="<?php echo htmlspecialchars($book['subcategory']); ?>" placeholder="Enter subcategory" required> -->
             
             <label>💰 Price (₹)</label>
             <input type="number" name="price" step="0.01" min="0" value="<?php echo $book['price']; ?>" required>

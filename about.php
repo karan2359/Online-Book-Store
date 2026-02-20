@@ -17,12 +17,12 @@
         
         /* Navigation */
         .navbar {
-            position: fixed;
+            position: sticky;
             top: 0;
             width: 100%;
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(20px);
-            z-index: 1000;
+            z-index: 1;
             padding: 1rem 5%;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
@@ -417,7 +417,7 @@
         <h2>Ready to Start Your Reading Journey?</h2>
         <p>Join millions of readers discovering their next favorite book</p>
         <div class="cta-buttons">
-            <a href="index.php" class="btn" style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 1.5rem 3rem; font-size: 1.3rem; border-radius: 50px;">🛒 Shop Now</a>
+            <a href="index.php" class="btn" style="background: linear-gradient(135deg, #49504c, #4b6256);; color: white; padding: 1.5rem 3rem; font-size: 1.3rem; border-radius: 50px;">🛒 Shop Now</a>
             <a href="login.php" class="btn" style="background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); padding: 1.3rem 3rem; font-size: 1.2rem; border-radius: 50px;">👤 Sign Up Free</a>
         </div>
     </section>
@@ -436,12 +436,12 @@
                 <a href="contact.php">Contact</a>
             </div>
             
-            <div class="social-icons">
+            <!-- <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            </div> -->
             
             <p style="opacity: 0.6; font-size: 0.9rem;">© 2026 BookStore. All rights reserved. | Made with ❤️ for book lovers</p>
         </div>

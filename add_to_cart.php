@@ -6,8 +6,20 @@ header('Content-Type: application/json');
 $book_id = $_POST['book_id'] ?? $_GET['book_id'] ?? 0;
 $quantity = $_POST['quantity'] ?? 1;
 
+// if (!$book_id || !is_numeric($book_id)) {
+//     echo json_encode(['success' => false, 'message' => 'Invalid book']);
+//     exit;
+// }
 if (!$book_id || !is_numeric($book_id)) {
-    echo json_encode(['success' => false, 'message' => 'Invalid book']);
+    echo json_encode(['success' => false]);
+    exit;
+}
+
+// Verify book exists
+$stmt = $pdo->prepare("SELECT id FROM books WHERE id = ?");
+$stmt->execute([$book_id]);
+if (!$stmt->fetch()) {
+    echo json_encode(['success' => false]);
     exit;
 }
 
@@ -52,7 +64,10 @@ try {
     }
     
     // Get total cart count
-    $stmt = $pdo->query("SELECT SUM(quantity) as total FROM cart WHERE user_id = {$_SESSION['user_id']}");
+    // $stmt = $pdo->query("SELECT SUM(quantity) as total FROM cart WHERE user_id = {$_SESSION['user_id']}");
+    $stmt = $pdo->prepare("SELECT SUM(quantity) as total FROM cart WHERE user_id = ?");
+$stmt->execute([$_SESSION['user_id']]);
+
     $total = $stmt->fetch()['total'] ?? 0;
     
     echo json_encode([

@@ -128,7 +128,7 @@ $avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
                 <p>Total Spent</p>
             </div>
             
-            <div class="stat-card">
+            <div class="stat-card ">
                 <div class="stat-icon">⭐</div>
                 <h3>Member</h3>
                 <p>Since : <?= date(' d M, Y', strtotime($user['created_at'])) ?></p>
