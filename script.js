@@ -1,74 +1,7 @@
 let cart = [];
 
-<<<<<<< HEAD
-=======
-// Filter books by category + subcategory
-function filterBooks(mainCategory) {
-    const books = document.querySelectorAll('.book-card');
-    let visibleCount = 0;
-    
-    books.forEach(book => {
-        const bookCategory = book.dataset.category;
-        
-        if (mainCategory === 'All') {
-            book.style.display = 'block';
-            visibleCount++;
-        } 
-        else if (mainCategory === bookCategory) {
-            book.style.display = 'block';
-            visibleCount++;
-        } 
-        else {
-            book.style.display = 'none';
-        }
-    });
-    
-    // Update active button
-    document.querySelectorAll('.category-filter button').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    if (event) event.target.classList.add('active');
-    
-    console.log(`${visibleCount} books shown for ${mainCategory}`);
-}
 
->>>>>>> 0bf9d8ceb3586113e861d10e5ca0c214f2f17145
-// Add to cart function
-function addToCart(bookId, title, price) {
-    // Check if user is logged in (you'll implement this later)
-    if (typeof isLoggedIn === 'function' && !isLoggedIn()) {
-        alert('Please login to add to cart');
-        if (typeof showLogin === 'function') showLogin();
-        return;
-    }
-    
-    // Send to PHP backend
-    fetch('add_to_cart.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `book_id=${bookId}&quantity=1&title=${encodeURIComponent(title)}&price=${price}`
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('✅ ' + title + ' added to cart!');
-           
-        } else {
-            alert('❌ ' + (data.message || 'Failed to add to cart'));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('❌ Network error. Please try again.');
-    });
-}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 0bf9d8ceb3586113e861d10e5ca0c214f2f17145
 // Place order function
 function placeOrder() {
     if (cart.length === 0) {
@@ -211,45 +144,7 @@ function showNotification(message, type) {
         toast.remove();
     }, 3000);
 }
- // Filter by Category
-        function filterBooks(mainCategory) {
-            const books = document.querySelectorAll('.book-card');
-            let visibleCount = 0;
-            
-            books.forEach(book => {
-                const bookCategory = book.dataset.category;
 
-                
-                if (mainCategory === 'All') {
-                    book.style.display = 'block';
-                    visibleCount++;
-                } 
-                else {
-                    book.style.display = 'none';
-                }
-            });
-                  
-            // Show result count
-            document.getElementById('resultCount').textContent = 
-                visibleCount + ' books found';
-        }
-
-        // Add to cart with category info
-        function addToCart(bookId, title, price, category) {
-            // Your existing cart logic
-            fetch('add_to_cart.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                body: `book_id=${bookId}&quantity=1`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert(`✅ ${title} added to cart!`);
-                    updateCartCount();
-                }
-            });
-        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
