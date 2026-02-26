@@ -1,0 +1,61 @@
+* { 
+            margin: 0; 
+            padding: 0; 
+            font-family: "Roboto Slab", serif; 
+        }
+        body { 
+            background: linear-gradient(135deg, #393E46, #4a5568); 
+            color: white; 
+            padding: 20px; 
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 40px auto; 
+        }
+        .order-summary { 
+            background: rgba(255,255,255,0.1); 
+            padding: 30px; 
+            border-radius: 20px; 
+            margin-bottom: 30px; 
+            backdrop-filter: blur(10px);
+        }
+        .order-item { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 15px 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+        .total { 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: #48bb78; 
+            margin: 20px 0; 
+        }
+        .btn { 
+            background: linear-gradient(135deg, #48bb78, #38a169); 
+            color: white; 
+            padding: 18px 50px; 
+            border: none; 
+            border-radius: 12px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            width: 100%; 
+            max-width: 300px;
+        }
+        .btn:hover { background: linear-gradient(135deg, #38a169, #2f855a); }
+        .back-btn { 
+            background: #6b7280; 
+            display: inline-block; 
+            padding: 12px 25px; 
+            margin: 10px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            color: white; 
+        }
+        .error { background: rgba(220,38,38,0.2); 
+        color: #fc8181; 
+        padding: 15px; 
+        border-radius: 10px; 
+        margin: 20px 0; 
+    }

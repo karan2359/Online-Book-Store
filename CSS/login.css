@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Slab", serif;
+    /* font-family: monospace;
+            font-size: large; */
+}
+
+body {
+    /* background-color: #393E46; */
+    background-image: url(../asset/login-bg.png);
+
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    background-color: #222831;
+    justify-content: space-between;
+    padding: 20px;
+   
+    font-weight: bold;
+    
+
+}
+
+.navlist {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.logo {
+    margin-left: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+ul {
+    list-style: none;
+}
+
+.title {
+    display: inline-block;
+    font-size: 35px;
+    position: absolute;
+    margin: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+/* Body */
+.container {
+    margin:5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 400px;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #e9d3b4;
+    color: black;
+    border-radius: 20px;
+    border: 4px solid black;
+}
+/* .sidebar{
+    background-color: #222831;
+    margin: 30px 10px;
+    padding: 20px 50px;
+    width: 45vw;
+    border-radius: 20px;
+}
+.sidebar img{
+    width: 120px;
+    margin: 10px;
+}
+
+.sidebar p{
+    padding: 8px 2px;
+    font-weight: bolder;
+} */
+.container p a {
+    color: blue;
+}
+
+.menu {
+    display: flex;
+    padding: 15px 30px;
+    /* width: 40vw; */
+    /* margin: 30px; */
+    gap: 50px;
+    /* background-color: #666; */
+}
+
+label {
+    display: block;
+    margin: 10px;
+    font-weight: bold;
+}
+
+input {
+    padding: 9px;
+    width: 250px;
+    /* outline: none; */
+}
+
+button {
+    padding: 7px;
+    border-radius: 20px;
+    margin-top: 22px;
+    width: 200px;
+    background-color: rgba(82, 82, 155, 0.96);
+    color: beige;
+    cursor: pointer;
+}
+
+h2 {
+    margin-bottom: 40px;
+    font-size: xx-large;
+}
+
+.category {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    position: relative;
+}
+
