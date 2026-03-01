@@ -28,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/login.css">
@@ -36,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <header>
         <nav class="navbar">
             <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo" height="60px">
-                    <p class="title">Book Store</p></a>
+                    <p class="title">Book <span>Store</span></p></a>
             </div>
             <div class="menu">
                 <div><a href="index.php">🏚️Home</a></div>

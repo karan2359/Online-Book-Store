@@ -18,7 +18,7 @@
             /* background-color: rgba(42, 238, 81, 0.659); */
             background-color: #222831;
             justify-content: space-between;
-            padding: 20px;
+            padding: 10px;
             /* font-size:large; */
             font-weight: bold;
         
@@ -36,12 +36,15 @@
         .logo {
             margin-left: 10px;
         }
+        .logo span {
+            color: #48bb78;
+        }
         .title {
             display: inline-block;
             font-size: 35px;
             position: absolute;
             margin: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', serif;       
         }
         a {
             text-decoration: none;
@@ -72,3 +75,4 @@
             padding: 14px;
             gap: 24px;
         }
+          html { scroll-behavior: smooth; }

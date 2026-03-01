@@ -13,7 +13,7 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirect after 3 seconds
-header("Refresh:5; url=index.php");
+header("Refresh:4; url=index.php");
 ?>
 
 <!DOCTYPE html>
@@ -184,7 +184,7 @@ header("Refresh:5; url=index.php");
     </div>
 
     <script>
-        let timeLeft = 5;
+        let timeLeft = 4;
         const countdownEl = document.getElementById('countdown');
         
         const timer = setInterval(() => {

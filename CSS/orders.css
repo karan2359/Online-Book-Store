@@ -40,7 +40,7 @@
             font-size: 35px;
             position: absolute;
             margin: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             font-family: 'Playfair Display', serif;       
         }
 
         a {
@@ -72,7 +72,7 @@
             /* background-color: rgba(42, 238, 81, 0.659); */
             background-color: #222831;
             justify-content: space-between;
-            padding: 20px;
+            padding: 10px;
             /* font-size:large; */
             font-weight: bold;
         
@@ -89,6 +89,9 @@
 
         .logo {
             margin-left: 10px;
+        }
+        .logo span {
+            color: #48bb78;
         }
 
         a {
@@ -188,3 +191,4 @@
         
         .btn-primary { background: #4facfe; color: white; }
         .btn-success { background: #51cf66; color: white; }
+          html { scroll-behavior: smooth; }

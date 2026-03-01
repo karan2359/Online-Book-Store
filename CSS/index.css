@@ -1,9 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    /* font-family: monospace;
-    font-size: large; */
-    /* overflow-x: hidden; */
     font-family: "Roboto Slab", serif;
 }
 
@@ -13,11 +10,9 @@ body {
 /* Navigation Bar */
 .navbar {
     display: flex;
-    /* background-color: rgba(42, 238, 81, 0.659); */
     background-color: #222831;
     justify-content: space-between;
-    padding: 20px;
-    /* font-size:large; */
+    padding: 10px;
     font-weight: bold;
 }
 
@@ -30,39 +25,47 @@ body {
 }
         
 .logo {
-    margin-left: 10px;            
+    margin-left: 10px;     
 }
+.title span {
+            color: #48bb78;
+        }
         
 .title {
     display: inline-block;
     font-size: 35px;
     position: absolute;
     margin: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-family: 'Playfair Display', serif;       
 }
 a {
     text-decoration: none;
     color: white;
-}
-ul {
-    list-style: none;
 }
 .menu {
     display: flex;
     padding: 14px;
     gap: 24px;
 }
-.books-grid {
-    /* margin: auto; */
-    padding: 20px;
-    display: flex;
-    justify-content:space-evenly;     
-    gap: 45px;
-    background-color: #948979;        
+ .wlc {
+    background-color: #fff;
+    max-width:  100%;
 }
- 
+.wlc p{
+        /* animation: wlc 3s 0s ease 2s infinite alternate ; */
+        /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        animation: wlc 10s linear  1s infinite alternate ;
+        color: red;
+        font-weight: bold;
+        padding: 3px;
+        scroll-behavior: smooth;
+        width: 500px;
+}
 
-        
+    @keyframes wlc {
+        from { transform: translatex(35%); }
+        to { transform: translatex(100%); }
+    }
 h2 {
     margin-bottom: 40px;
     font-size: xx-large;
@@ -99,8 +102,6 @@ h2 {
 .dropdown ul {
     display: none;
     position: absolute;
-    /* top: 100%; */
-    /* left: 0; */
     background-color: rgba(255, 255, 255, 0.95);
     min-width: 180px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
@@ -164,15 +165,7 @@ ul {
     transform: translateX(5px);
 }
 
-/* body  */
-.hero {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 40px;
-    overflow-y: auto;
-    flex-wrap:wrap;
-          
-}
+/* body   */
 .contain {
     border: solid 1px white;
     width: 100%;
@@ -198,20 +191,23 @@ main {
 .books-grid {
     display: flex;
     flex-wrap: wrap;    
-    gap: 60px;      
     padding: 20px 15px;  
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
-    justify-content: flex-start;
+    /* justify-content:space-evenly;      */
+    justify-content:flex-start;     
+    /* gap: 45px; */
+    gap: 60px;
+    background-color: #948979;  
 }
 
 
 .books-gridd {
     flex: 0 0 260px;     
     max-width: 260px;
-    min-height: 440px;
+    min-height: 411px;
     box-sizing: border-box;
 }
 
@@ -223,7 +219,8 @@ main {
     border-radius: 20px;
     flex-direction: column;
     border: 2px solid black;
-    background: #f1f1f1;
+    /* background: #f1f1f1; */
+    background: #ffffffb0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     transition: transform 0.2s;
 }
@@ -232,16 +229,18 @@ main {
 
 /* Image - Responsive Cover */
 .book-card img {
-    width: 60%;
-    height: 200px;
+    width: 50%;
+    height: 183px;
     object-fit: cover;
     border-bottom: 1px solid #ddd;
-    margin-left: 16%;
+    margin-left: 22%;
     padding: 4px;
 }
 
 /* Book Info */
 .book-info {
+    font-size: smaller;
+    height: 180px;
     padding: 15px;
     flex: 1;
     display: flex;
@@ -273,6 +272,9 @@ main {
     font-weight: bold;
     color: #e74c3c;
     margin: 12px 0 10px 0;
+    /* color: #48bb78 ; */
+    font-size: 1.4rem;
+    font-weight: bold ;
 }
 
 .add-cart-btn {
@@ -386,11 +388,6 @@ footer ul li a{
     margin: 10px 0;
     font-size: 1.1rem;
 }
-.price {
-    color: #48bb78 !important;
-    font-size: 1.4rem;
-    font-weight: bold !important;
-}
 .description {
     background: #fff;
     padding: 20px;
@@ -471,3 +468,4 @@ footer ul li a{
 .books-gridd:has(.book-card[style*="display: none"]) {
     display: none ;
 }
+  html { scroll-behavior: smooth; }

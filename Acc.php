@@ -1,17 +1,16 @@
 <?php
 session_start();
 include 'config.php';
-
-
+  if(isLoggedIn()){
 
 // Fetch user info
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $user = $stmt->fetch();
 
-
 // Avatar logic (first letter of name)
-$avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
+$avatar_initial = strtoupper(substr($user['fullname'], 0, 1));  
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,18 +18,28 @@ $avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Section</title>
+    <title>Account - BookStore</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/Acc.css">
 </head>
 
 <body>
+    <?php  if(!isLoggedIn()):   ?>
+       <div class="not_login_btn" >
+           <a href="index.php">Home</a>  <a href='login.php'>Login</a> 
+       </div>
+              <div class='not_login'>
+                        <p>⚠️ Please<a href='login.php'>LogIn</a>First</p>
+                    </div>;
+                     <?php else: ?>
     <div class="container">
         <aside class="sidebar">
             <div class="dash">
-                <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo"height="60px"><p class="title">Book Store</p></a>
+                <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo"height="60px"><p class="title">Book <span>Store</span></p></a>
                 </div>
             </div>
             <hr>
@@ -131,7 +140,7 @@ $avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
         </div>
             </div>
         </div>
-    </div>
+    </div> <?php endif; ?>
 </body>
 
 </html>

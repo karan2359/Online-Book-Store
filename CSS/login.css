@@ -17,7 +17,7 @@ body {
     display: flex;
     background-color: #222831;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
    
     font-weight: bold;
     
@@ -33,6 +33,9 @@ body {
 .logo {
     margin-left: 10px;
 }
+.logo span {
+            color: #48bb78;
+        }
 
 a {
     text-decoration: none;
@@ -48,7 +51,7 @@ ul {
     font-size: 35px;
     position: absolute;
     margin: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-family: 'Playfair Display', serif;       
 }
 
 
@@ -68,22 +71,6 @@ ul {
     border-radius: 20px;
     border: 4px solid black;
 }
-/* .sidebar{
-    background-color: #222831;
-    margin: 30px 10px;
-    padding: 20px 50px;
-    width: 45vw;
-    border-radius: 20px;
-}
-.sidebar img{
-    width: 120px;
-    margin: 10px;
-}
-
-.sidebar p{
-    padding: 8px 2px;
-    font-weight: bolder;
-} */
 .container p a {
     color: blue;
 }
@@ -131,3 +118,4 @@ h2 {
     position: relative;
 }
 
+  html { scroll-behavior: smooth; }

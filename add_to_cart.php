@@ -6,14 +6,11 @@ header('Content-Type: application/json');
 $book_id = $_POST['book_id'] ?? $_GET['book_id'] ?? 0;
 $quantity = $_POST['quantity'] ?? 1;
 
-// if (!$book_id || !is_numeric($book_id)) {
-//     echo json_encode(['success' => false, 'message' => 'Invalid book']);
-//     exit;
-// }
 if (!$book_id || !is_numeric($book_id)) {
-    echo json_encode(['success' => false]);
+    echo json_encode(['success' => false, 'message' => 'Invalid book']);
     exit;
 }
+
 
 // Verify book exists
 $stmt = $pdo->prepare("SELECT id FROM books WHERE id = ?");

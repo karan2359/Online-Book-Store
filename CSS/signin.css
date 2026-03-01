@@ -16,7 +16,7 @@
             background-color: #222831;
             /* background-color: rgba(42, 238, 81, 0.659); */
             justify-content: space-between;
-            padding: 20px;
+            padding: 10px;
             font-weight: bold;
             /* position: sticky; */
 
@@ -35,8 +35,9 @@
             /* display:inline; */
             margin-left: 10px;
             /* display: flex;    */
-
-
+        }
+        .logo span {
+            color: #48bb78;
         }
 
         a {
@@ -113,7 +114,7 @@
             font-size: 35px;
             position: absolute;
             margin: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             font-family: 'Playfair Display', serif;       
         }
         .container p {
             margin: 10px;
@@ -130,4 +131,5 @@
             background-color: #DFD0B8;
             height: 50px
         }
+          html { scroll-behavior: smooth; }
  

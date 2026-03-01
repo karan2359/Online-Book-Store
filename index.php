@@ -1,5 +1,4 @@
-<?php include_once 'config.php';
- ?>
+<?php include_once 'config.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Shop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="CSS/index.css">
@@ -18,8 +19,10 @@
 <header>
     <!-- Navigation Bar -->
         <nav class="navbar">
-            <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo" height="60px">
-                    <p class="title">Book Store</p></a>
+            <div class="logo">
+                <a href="index.php"> <img src="asset/logo cut.png" alt="logo" height="60px">
+                
+                    <p class="title ">Book <span>Store</span></p></a>
             </div>
             <div class="menu">
                 <!-- Search Bar -->
@@ -52,17 +55,20 @@
         </nav>
 <!-- Category -->
 <ul class="category">
-    <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
+            <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
             <li class="dropdown list" onclick="filterBooks('Fiction', '')">Fiction</li>
-            <li  class="dropdown list" onclick="filterBooks('Non-Fiction', '')">Non-Fiction</li>
-            <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics</li>            
+            <li class="dropdown list" onclick="filterBooks('Non-Fiction', '')">Non-Fiction</li>
+            <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics</li>
             <li class="dropdown list" onclick="filterBooks('Kids', '')">Kids</li>
             <li class="dropdown list" onclick="filterBooks('Adults', '')">Adults</li>
             <li class="dropdown list" onclick="filterBooks('Comics', '')">Comics</li>
             <li class="dropdown list" onclick="filterBooks('Regional Books', '')">Regional Books</li>
 </ul>
 </header>
-    <main>
+<main>
+<div class="wlc">
+    <p>Welcome To This Website . Login For Purchase Book</p>
+</div>
 <div class="books-grid" id="booksContainer">
 <?php
 $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
@@ -86,7 +92,8 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
             </div>
         </div>
     </div>";
-}
+
+        }
 ?>
 <script>window.books = <?php echo json_encode($booksArray); ?>;</script>
 </div>
@@ -278,7 +285,7 @@ function closeQuickView() {
     document.body.style.overflow = 'auto';
 }
 
-// ✅ SILENT Add to Cart
+// Add to Cart
 function addToCartSilent() {
     const book = window.currentQuickViewBook;
     if (!book || !book.id) return;
@@ -389,6 +396,155 @@ function updateCartCount() {
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeQuickView();
 });
+let cart = [];
+
+
+
+// Place order function
+function placeOrder() {
+    if (cart.length === 0) {
+        alert('🛒 Your cart is empty!');
+        return;
+    }
+    
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    if (confirm(`Place order for ₹${total.toFixed(2)}?`)) {
+        fetch('place_order.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                cart: cart,
+                total_amount: total
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('✅ Order placed successfully! Order ID: ' + data.order_id);
+                cart = [];
+                updateCartCount();
+                window.location.href = 'orders.php';
+            } else {
+                alert('❌ Order failed: ' + data.message);
+            }
+        });
+    }
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Bookstore JS loaded!');
+    
+    
+    // Auto-hide alerts after 3 seconds
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        setTimeout(() => alert.style.display = 'none', 3000);
+    });
+});
+
+// Global functions for login/logout 
+function isLoggedIn() {
+    // Check session (you'll implement PHP check)
+    return localStorage.getItem('loggedIn') === 'true';
+}
+
+function showLogin() {
+    // Show your login modal
+    alert('Login modal will open here');
+}
+
+function logout() {
+    localStorage.removeItem('loggedIn');
+    cart = [];
+    
+}
+
+
+// Check login status on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    const userName = localStorage.getItem('userName');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const userWelcome = document.getElementById('userWelcome');
+    
+    if (isLoggedIn && userName) {
+        if (userWelcome) userWelcome.textContent = `Welcome, ${userName}!`;
+        if (logoutBtn) logoutBtn.style.display = 'block';
+    }
+});
+
+function logout() {
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('isAdmin');
+    window.location.reload();
+}
+function addToCart(bookId) {
+    // Show loading
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '⏳ Adding...';
+    btn.disabled = true;
+    
+    fetch('add_to_cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `book_id=${bookId}&quantity=1`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            
+            
+            // Success message
+            showNotification(data.message, 'success');
+            
+            if (data.guest_cart) {
+                showNotification('Login to save your cart permanently!', 'info');
+            }
+        } else {
+            if (data.message.includes('login')) {
+                window.location.href = 'login.php';
+            } else {
+                showNotification(data.message, 'error');
+            }
+        }
+    })
+    .catch(error => {
+        showNotification('Network error!', 'error');
+    })
+    .finally(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+}
+
+
+
+function showNotification(message, type) {
+    // Simple toast notification
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position:fixed; top:20px; right:20px; padding:15px 20px; 
+        background:${type==='success'?'#4facfe':type==='error'?'#e74c3c':'#f39c12'};
+        color:white; border-radius:5px; z-index:9999; font-weight:bold;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+
+       
 </script><script src="script.js"></script>
 </body>
 </html>

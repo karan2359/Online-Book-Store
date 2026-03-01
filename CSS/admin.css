@@ -121,4 +121,4 @@
             text-decoration:none; 
             font-weight:500;
         }
-    
+      html { scroll-behavior: smooth; }

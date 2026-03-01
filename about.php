@@ -394,7 +394,7 @@
             <div class="team-card">
                 <div class="team-avatar">A</div>
                 <h3>Abhishek More</h3>
-                <div class="team-role">Documentation</div>
+                <div class="team-role">Documentation & Web Developer</div>
                 <!-- <p>Book enthusiast with 15+ years experience selecting the best reads for you.</p> -->
             </div>
             <div class="team-card">

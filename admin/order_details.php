@@ -28,33 +28,48 @@ $order_items = $items->fetchAll();
 <head>
     <title>Order #<?= $order_id ?> - Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+        body { font-family: "Roboto Slab", serif; max-width: 800px; margin: 40px auto; padding: 20px; }
         .order-header { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px; }
         .items-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #666; }
         .total { font-size: 24px; font-weight: bold; color: #28a745; text-align: right; }
         .print-btn { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; }
+        h1{
+            text-align:center;
+        }
         .logo {
             margin-left: 10px;
             padding:10px;
         }
+        .title span {
+            color: #48bb78;
+        }
+        
         .title {
             display: inline-block;
-            padding-left:10px;
             font-size: 35px;
-            font-weight:bold;
-            position: absolute;
+            font-weight: bold;
             margin: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', serif;       
+        }
+ 
+        .COD{
+            color:red;
+            text-align: right;
+            Margin-top:5px;
+            font-size: large;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
      <div class="logo"><a href="../index.php"> <img src="../asset/logo cut.png" alt="logo" height="60px">
-                    <p class="title">Book Store</p></a>
+                    <p class="title">Book <span>Store</span></p></a>
             </div>
     <h1>Order Details </h1>
     
@@ -83,6 +98,7 @@ $order_items = $items->fetchAll();
     </table>
     
     <div class="total">Grand Total: ₹<?= number_format($order['total_amount'], 2) ?></div>
+    <div class="COD">Cash On Delivery Only</div>
     
     <br>
     <button class="print-btn" onclick="window.print()">🖨️ Print Receipt</button>
