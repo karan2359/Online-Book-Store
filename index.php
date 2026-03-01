@@ -69,6 +69,28 @@
 <div class="wlc">
     <p>Welcome To This Website . Login For Purchase Book</p>
 </div>
+<div class="sugg">
+    <?php
+    
+    $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
+    $booksArray = []; // For JS access
+while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $booksArray[] = $book; // Store for quick view
+    $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT); // Safe JSON        
+    echo "<div class='book-sugg'>
+            <div class='book-card' data-category='{$book['category']}' data-id='{$book['id']}'
+                onclick='openQuickView(" . $safeBook . ")' style='cursor:pointer;'>
+                <img src='{$book['image']}' alt='{$book['title']}'>
+
+                <div class='book-info'>                
+                    <div class='category-tag'>Category:{$book['category']} </div>
+                    <h3>{$book['title']}</h3>                
+                </div>
+            </div>
+        </div>";}
+    
+    ?>
+</div>
 <div class="books-grid" id="booksContainer">
 <?php
 $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
@@ -76,13 +98,16 @@ $booksArray = []; // For JS access
 while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $booksArray[] = $book; // Store for quick view
     $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT); // Safe JSON
+   
+
+        
     echo "<div class='books-gridd'>
     <div class='book-card' data-category='{$book['category']}' data-id='{$book['id']}'
     onclick='openQuickView(" . $safeBook . ")' style='cursor:pointer;'>
         <img src='{$book['image']}' alt='{$book['title']}'>
 
             <div class='book-info'>
-                <div class='subcategory-tag'>Category:{$book['category']} </div>
+                <div class='category-tag'>Category:{$book['category']} </div>
                 <h3>{$book['title']}</h3>
                 <p><strong>✍️ {$book['author']}</strong></p>
                 <p>🏢 {$book['publisher']}</p>
@@ -145,7 +170,7 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
 </div>
 <script>
     window.books = <?php echo json_encode($booksArray); ?>;
-// Filter by Category + Subcategory
+// Filter by Category 
         function filterBooks(mainCategory) {
             const books = document.querySelectorAll('.book-card');
             let visibleCount = 0;

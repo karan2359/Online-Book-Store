@@ -51,6 +51,7 @@ a {
     background-color: #fff;
     max-width:  100%;
 }
+
 .wlc p{
         /* animation: wlc 3s 0s ease 2s infinite alternate ; */
         /* animation: name duration timing-function delay iteration-count direction fill-mode; */
@@ -188,6 +189,52 @@ main {
 }
 
 
+
+.sugg {
+    
+    display: flex;
+    overflow-y: auto;
+    overflow-x: none;
+    /* flex-wrap: wrap;     */
+    padding: 20px 15px;  
+    box-sizing: border-box;
+    margin: 0 auto;
+    justify-content:flex-start;     
+    background-color: #948979;  
+}
+
+@keyframes sugg {
+    from { translate:0%; }
+    to { translate:-900%; }
+}
+.sugg::-webkit-scrollbar {
+    display: none;
+}
+.book-sugg {
+        scroll-behavior: smooth;
+    animation: sugg 20s linear  infinite ;
+    flex: 0 0 260px;     
+    max-width: 260px;
+    margin: 10px;
+    height: 302px;
+    box-sizing: border-box;
+}
+.info {
+    font-size: smaller;
+    /* height: 180px; */
+    padding: 15px;
+    /* flex: 1; */
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.books-gridd {
+    flex: 0 0 260px;     
+    max-width: 260px;
+    min-height: 411px;
+    box-sizing: border-box;
+}
 .books-grid {
     display: flex;
     flex-wrap: wrap;    
@@ -202,15 +249,6 @@ main {
     gap: 60px;
     background-color: #948979;  
 }
-
-
-.books-gridd {
-    flex: 0 0 260px;     
-    max-width: 260px;
-    min-height: 411px;
-    box-sizing: border-box;
-}
-
 /* Book Card - Full Wrapper */
 .book-card {
     width: 100%;
@@ -257,9 +295,9 @@ main {
     /* -webkit-box-orient: vertical; */
 }
 
-.subcategory-tag {
+.category-tag {
     font-size: 0.75em;
-    color: #666;
+    color: black;
     background: #f8f9fa;
     padding: 4px 8px;
     border-radius: 12px;
@@ -469,3 +507,20 @@ footer ul li a{
     display: none ;
 }
   html { scroll-behavior: smooth; }
+
+
+  /* ✅ BEAUTIFUL No Results Styling */
+.no-results {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px dashed #dee2e6;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.no-results strong {
+    color: #495057;
+    font-size: 24px;
+    display: block;
+    margin-bottom: 8px;
+}
