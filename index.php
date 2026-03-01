@@ -55,59 +55,59 @@
         </nav>
 <!-- Category -->
 <ul class="category">
-    <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
-            <li class="dropdown list" onclick="filterBooks('Fiction', '')">Fiction
+    <li class="dropdown list active" onclick=" filterBooks('All', ''); event.stopPropagation();" > All Books</li>
+            <li class="dropdown list" onclick=" filterBooks('Fiction', ''); event.stopPropagation();">Fiction
                 <ul>
-                    <li class="a "  onclick="filterBooks('Fiction', 'Classics')">Classics</li>                  
-                    <li  class="a " onclick="filterBooks('Fiction', 'Mythological')">Mythological</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Fiction', 'Classics'); event.stopPropagation();">Classics</li>                  
+                    <li  class="a sub-li " onclick=" filterBooks('Fiction', 'Mythological'); event.stopPropagation();">Mythological</li>
                 </ul>
             </li>
-            <li  class="dropdown list" onclick="filterBooks('Non-Fiction', '')">Non-Fiction
+            <li  class="dropdown list" onclick=" filterBooks('Non-Fiction', ''); event.stopPropagation();">Non-Fiction
                 <ul>
-                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Self Improvement')">Self Improvement</li>
-                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Biography')">Biography</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Non-Fiction', 'Self Improvement'); event.stopPropagation();">Self Improvement</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Non-Fiction', 'Biography'); event.stopPropagation();">Biography</li>
                 </ul>
             </li>
-            <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics
+            <li class="dropdown list" onclick=" filterBooks('Academics', ''); event.stopPropagation();">Academics
                 <ul>              
-                    <li  class="a " onclick="filterBooks('Academics', 'Competitive Exam')">Competitive Exam</li>
-                    <li class="a "  onclick="filterBooks('Academics', 'Entrance exam')">Entrance exam</li>
-                    <li class="a "  onclick="filterBooks('Academics', 'School')"> School</li>
-                    <li class="a "  onclick="filterBooks('Academics', 'General Knowledge')"> General Knowledge</li>
+                    <li  class="a sub-li " onclick=" filterBooks('Academics', 'Competitive Exam'); event.stopPropagation();">Competitive Exam</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Academics', 'Entrance exam'); event.stopPropagation();">Entrance exam</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Academics', 'School'); event.stopPropagation();"> School</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Academics', 'General Knowledge'); event.stopPropagation();"> General Knowledge</li>
                     <!-- <li><a href="#"></a></li> -->
                 </ul>
             </li>
             
-            <li class="dropdown list" onclick="filterBooks('Kids', '')">Kids
+            <li class="dropdown list" onclick=" filterBooks('Kids', ''); event.stopPropagation();">Kids
             <ul>
-                <li  class="a"  onclick="filterBooks('Kids', 'Activity &amp; Puzzles','Activity','Puzzles')"> Activity &amp; Puzzles</li>
-                <li  class="a"  onclick="filterBooks('Kids', 'Colouring &amp; Art book ','Colouring','Art book')"> Colouring &amp; Art book </li>
-                <li  class="a"  onclick="filterBooks('Kids', 'Essay &amp; Letter ','Essay','Letter')"> Essay &amp; Letter </li>
-                <li  class="a"  onclick="filterBooks('Kids', 'Work Book')">Work Book</li>
+                <li  class="a sub-li "  onclick=" filterBooks('Kids', 'Activity &amp; Puzzles'); event.stopPropagation();"> Activity &amp; Puzzles</li>
+                <li  class="a sub-li "  onclick=" filterBooks('Kids', 'Colouring &amp; Art book '); event.stopPropagation();"> Colouring &amp; Art book </li>
+                <li  class="a sub-li "  onclick=" filterBooks('Kids', 'Essay &amp; Letter '); event.stopPropagation();"> Essay &amp; Letter </li>
+                <li  class="a sub-li "  onclick=" filterBooks('Kids', 'Work Book'); event.stopPropagation();">Work Book</li>
                 </ul>
             </li>
-            <li class="dropdown list" onclick="filterBooks('Adults', '')">Adults
+            <li class="dropdown list" onclick=" filterBooks('Adults', ''); event.stopPropagation();">Adults
                 <ul>
-                    <li  class="a"  onclick="filterBooks('Adults', 'Crime')">Crime</li>
-                    <li  class="a"  onclick="filterBooks('Adults', 'Mystery Thriller')">Mystery Thriller</li>
-                    <lI  class="a"  onclick="filterBooks('Adults', 'Gen Fiction')">Gen Fiction</li>                    
-                    <li  class="a"  onclick="filterBooks('Adults', 'Fantasy Science Fiction')">Fantasy Science Fiction</li>                   
-                    <li  class="a"  onclick="filterBooks('Adults', 'Horror')">Horror</li>
+                    <li  class="a sub-li "  onclick=" filterBooks('Adults', 'Crime'); event.stopPropagation();">Crime</li>
+                    <li  class="a sub-li "  onclick=" filterBooks('Adults', 'Mystery Thriller'); event.stopPropagation();">Mystery Thriller</li>
+                    <li  class="a sub-li "  onclick=" filterBooks('Adults', 'Gen Fiction'); event.stopPropagation();">Gen Fiction</li>                    
+                    <li  class="a sub-li "  onclick=" filterBooks('Adults', 'Fantasy Science Fiction'); event.stopPropagation();">Fantasy Science Fiction</li>                   
+                    <li  class="a sub-li "  onclick=" filterBooks('Adults', 'Horror'); event.stopPropagation();">Horror</li>
                 </ul>
             </li>
 
-                <li class="dropdown list" onclick="filterBooks('Comics', '')">Comics
+                <li class="dropdown list" onclick=" filterBooks('Comics', ''); event.stopPropagation();">Comics
                 <ul>
-                    <li class="a"  onclick="filterBooks('Comics', 'Superhero Comics')">Superhero Comics</li>
-                    <li  class="a" onclick="filterBooks('Comics', 'Manga Comics')">Manga Comics</li>
-                    <li class="a"  onclick="filterBooks('Comics', 'Horror Comics')">Horror Comics</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Comics', 'Superhero Comics'); event.stopPropagation();">Superhero Comics</li>
+                    <li  class="a sub-li " onclick=" filterBooks('Comics', 'Manga Comics'); event.stopPropagation();">Manga Comics</li>
+                    <li class="a sub-li "  onclick=" filterBooks('Comics', 'Horror Comics'); event.stopPropagation();">Horror Comics</li>
                 </ul>
             </li>
-            <li class="dropdown list" onclick="filterBooks('Regional Books', '')">Regional Books
+            <li class="dropdown list" onclick=" filterBooks('Regional Books', ''); event.stopPropagation();">Regional Books
                 <ul>
-                    <li  class="a" onclick="filterBooks('', 'Marathi')">Marathi</li>
-                    <li  class="a" onclick="filterBooks('Regional Books', 'Hindi')">Hindi</li>
-                    <li  class="a" onclick="filterBooks('Regional Books', 'Gujarati')">Gujarati</li>
+                    <li  class="a sub-li " onclick=" filterBooks('Regional Books', 'Marathi'); event.stopPropagation();">Marathi</li>
+                    <li  class="a sub-li " onclick=" filterBooks('Regional Books', 'Hindi'); event.stopPropagation();">Hindi</li>
+                    <li  class="a sub-li " onclick=" filterBooks('Regional Books', 'Gujarati'); event.stopPropagation();">Gujarati</li>
                 </ul>
             </li>
 </ul>
@@ -116,28 +116,39 @@
 <div class="wlc">
     <p>Welcome To This Website . Login For Purchase Book</p>
 </div>
-<div class="sugg">
-    <?php
-    
-    $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
-    $booksArray = []; // For JS access
-while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $booksArray[] = $book; // Store for quick view
-    $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT); // Safe JSON        
-    echo "<div class='book-sugg'>
-            <div class='book-card' data-category='{$book['category']}' data-id='{$book['id']}'
-                onclick='openQuickView(" . $safeBook . ")' style='cursor:pointer;'>
-                <img src='{$book['image']}' alt='{$book['title']}'>
 
-                <div class='info'>                
-                    <div class='category-tag'>Category:{$book['category']} </div>
-                    <h3>{$book['title']}</h3>                
-                </div>
-            </div>
-        </div>";}
+<div class="sugg">
+<?php
+$stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
+$booksArray = [];
+while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $booksArray[] = $book;
+    $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT);
     
-    ?>
+    // ✅ SUBCATEGORY FOR SUGGESTIONS
+    $rawSubcat = trim($book['subcategory'] ?? '');
+    $subcats = array_filter(array_map('trim', explode(',', $rawSubcat)));
+    $filterSubcat = !empty($subcats) ? end($subcats) : '';
+    $catLower = strtolower(trim($book['category']));
+    $subLower = strtolower($filterSubcat);
+    
+    echo "<div class='book-sugg'>
+    <div class='book-card' 
+         data-category='$catLower'
+         data-subcategory='$subLower'
+         data-id='{$book['id']}'
+         onclick=' openQuickView(" . $safeBook . ")' style='cursor:pointer;'>
+        <img src='{$book['image']}' alt='{$book['title']}'>
+        <div class='info'>
+            <div class='category-tag'>{$book['category']}</div>
+            <h3>{$book['title']}</h3>
+        </div>
+    </div></div>";
+}
+?>
 </div>
+
+
 <div class="books-grid" id="booksContainer">
 <?php
 $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
@@ -146,35 +157,37 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $booksArray[] = $book;
     $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT);
     
-    // ✅ FULL SUBCATEGORY PROCESSING
-    $subcat = trim($book['subcategory'] ?? '');
-    if (strpos($subcat, ',') !== false) {
-        $subcat = trim(explode(',', $subcat)[0]); // First subcategory only
-    }
+    $rawSubcat = trim($book['subcategory'] ?? '');
+    $subcats = array_filter(array_map('trim', explode(',', $rawSubcat)));
+    $filterSubcat = !empty($subcats) ? end($subcats) : '';
+    $catLower = strtolower(trim($book['category']));
+    $subLower = strtolower($filterSubcat);
     
     echo "<div class='books-gridd'>
     <div class='book-card' 
-         data-category='".htmlspecialchars(trim($book['category']))."'
-         data-subcategory='".htmlspecialchars(trim($subcat))."'  
+         data-category='$catLower'
+         data-subcategory='$subLower'
          data-id='{$book['id']}'
-         onclick='openQuickView(" . $safeBook . "); event.stopPropagation();'
+         onclick=' openQuickView(" . $safeBook . "); event.stopPropagation();'
          style='cursor:pointer;'>
         <img src='{$book['image']}' alt='{$book['title']}'>
         <div class='book-info'>
-            <!-- ✅ SHOW SUBCATEGORY TAG -->
-            <div class='subcategory-tag'>{$book['category']} → {$subcat}</div>
+            <div class='subcategory-tag'>{$book['category']} → {$filterSubcat}</div>
             <h3>{$book['title']}</h3>
             <p><strong>✍️ {$book['author']}</strong></p>
             <p>🏢 {$book['publisher']}</p>
-            <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
-            <button class='add-cart-btn' onclick='addToCart({$book["id"]}); event.stopPropagation();'>🛒 Add to Cart</button>
+            <p class='price'>₹{$book['price']}</p>
+            <button class='add-cart-btn' onclick=' addToCart({$book["id"]}); event.stopPropagation();'>🛒 Add to Cart</button>
         </div>
-    </div>
-</div>";
+    </div></div>";
 }
 ?>
+<script>window.books = <?= json_encode($booksArray) ?>;</script>
+</div>
 
-<script>window.books = <?php echo json_encode($booksArray); ?>;</script>
+
+
+
 </div>
     </div>
     </main>
@@ -192,9 +205,9 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
     
     <!-- Quick View Modal -->
 <div id="quickViewModal" class="quick-view-modal" style="display: none;">
-    <div class="modal-overlay" onclick="closeQuickView()"></div>
+    <div class="modal-overlay" onclick=" closeQuickView()"></div>
     <div class="modal-content">
-        <span class="close-btn" onclick="closeQuickView()">&times;</span>
+        <span class="close-btn" onclick=" closeQuickView()">&times;</span>
         <div class="qv-book-details">
             <img id="qvBookImage" src="" alt="Book Cover" class="qv-image">
             <div class="qv-info">
@@ -209,8 +222,8 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     <?php 
                     include 'config.php';
                     if (isLoggedIn()) {                       
-                        echo "<button onclick='addToCartSilent()' class='btn-add-cart'>🛒 Add to Cart</button>
-                                <button onclick='placeOrderDirect()' class='btn-buy'>🚀 Place Order</button>";                
+                        echo "<button onclick=' addToCartSilent()' class='btn-add-cart'>🛒 Add to Cart</button>
+                                <button onclick=' placeOrderDirect()' class='btn-buy'>🚀 Place Order</button>";                
                     } else {
                         echo "<p style='color:red;'>⚠️ Please Login to Buy your Book </p>";
                     }?>    
@@ -224,32 +237,52 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
     </div>
 </div>
 <script>
-    window.books = <?php echo json_encode($booksArray); ?>;
 // Filter by Category 
-       function filterBooks(mainCategory, subcategory = '') {
-    const books = document.querySelectorAll('.book-card');
-    let visibleCount = 0;
+function filterBooks(cat, subcat = '') {
+    console.log(`🔍 FILTER: "${cat}" | "${subcat}"`);
     
-    books.forEach(book => {
-        const bookCat = book.dataset.category?.toLowerCase().trim() || '';
-        const bookSub = book.dataset.subcategory?.toLowerCase().trim() || '';
-        const filterCat = mainCategory.toLowerCase().trim();
-        const filterSub = subcategory.toLowerCase().trim();
+    const allBooks = document.querySelectorAll('#booksContainer .book-card');
+    let count = 0;
+    
+    allBooks.forEach(book => {
+        const bookCat = (book.dataset.category || '').toLowerCase().trim();
+        const bookSub = (book.dataset.subcategory || '').toLowerCase().trim();
+        const filterCat = cat.toLowerCase().trim();
+        const filterSub = subcat.toLowerCase().trim();
         
-        // ✅ PERFECT SUBCATEGORY LOGIC
-        if (filterCat === 'all' || 
-            (filterCat === bookCat && (filterSub === '' || filterSub === bookSub))) {
-            book.style.display = 'block';
-            book.parentElement.style.display = 'block';
-            visibleCount++;
+        let show = false;
+        
+        if (filterCat === 'all') show = true;
+        else if (filterCat === bookCat && filterSub === '') show = true;
+        else if (filterCat === bookCat && filterSub !== '' && bookSub === filterSub) show = true;
+        
+        const wrapper = book.closest('.books-gridd');
+        if (show) {
+            book.style.display = 'flex';
+            wrapper.style.display = 'block';
+            count++;
         } else {
             book.style.display = 'none';
-            book.parentElement.style.display = 'none';
+            wrapper.style.display = 'none';
         }
     });
     
-    console.log(`✅ ${mainCategory}/${subcategory} → ${visibleCount} books`);
+    console.log(`✅ ${count} books shown`);
+    document.title = `Books: ${count}`;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         // Add to cart with category info
@@ -273,66 +306,79 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
         });
         // LIVE SEARCH - Name, Author, Category
 function searchBooks(query) {
-    const books = document.querySelectorAll('.book-card');
     const resultsDiv = document.getElementById('searchResults');
     let resultsHTML = '';
     let visibleCount = 0;
-    
-    // Hide all books first
-    books.forEach(book => {
-        book.style.display = 'none';
-    });
     
     if (query.length < 2) {
         resultsDiv.style.display = 'none';
         return;
     }
     
-    // Search Logic
-    books.forEach(book => {
+    // 🔥 ONLY MAIN CONTAINER BOOKS (NOT suggestions!)
+    const mainBooks = document.querySelectorAll('#booksContainer .book-card');
+    
+    mainBooks.forEach(book => {
         const title = book.querySelector('h3')?.textContent.toLowerCase() || '';
         const author = book.querySelector('p strong')?.textContent.toLowerCase() || '';
-        const category = book.dataset.category.toLowerCase();
+        const category = (book.dataset.category || '').toLowerCase();
         const searchTerm = query.toLowerCase();
         
-        // Match Title OR Author OR Category
         if (title.includes(searchTerm) || 
             author.includes(searchTerm) || 
             category.includes(searchTerm)) {
             
-            book.style.display = 'block';
             visibleCount++;
             
-            // Add to dropdown results
-            const bookTitle = book.querySelector('h3').textContent;
-            const bookPrice = book.querySelector('.price').textContent;
+            const bookTitle = book.querySelector('h3')?.textContent || 'Unknown';
+            const bookPrice = book.querySelector('.price')?.textContent || '₹0';
+            const bookAuthor = book.querySelector('p strong')?.textContent || 'Unknown';
+            
             resultsHTML += `
                 <div style="padding:12px; border-bottom:1px solid #eee; cursor:pointer; hover:background:#f0f0f0;"
-                     onclick="scrollToBook(${book.dataset.id})">
+                     onclick="scrollToBook(${book.dataset.id}); event.stopPropagation();">
                     <strong>${bookTitle.substring(0,30)}${bookTitle.length>30?'...':''}</strong><br>
-                    <small>${author.substring(0,20)}... | ₹${bookPrice}</small>
+                    <small>${bookAuthor.substring(0,20)}${bookAuthor.length>20?'...':''} | ${bookPrice}</small>
                 </div>
             `;
         }
     });
     
-    // Show results dropdown
     resultsDiv.innerHTML = resultsHTML || '<div style="padding:15px; color:#999;">No books found</div>';
     resultsDiv.style.display = resultsHTML ? 'block' : 'none';
     
-    // Show count
-    document.getElementById('searchCount')?.textContent(`Found ${visibleCount} books`);
+    console.log(`🔍 Search "${query}": ${visibleCount} results (MAIN books only)`);
 }
+
+
 
 // Scroll to specific book
 function scrollToBook(bookId) {
-    const book = document.querySelector(`[data-id="${bookId}"]`);
+    const book = document.querySelector(`#booksContainer [data-id="${bookId}"]`);
     if (book) {
+        // 🔥 Show book temporarily + scroll
+        const wrapper = book.closest('.books-gridd');
+        const wasHidden = book.style.display === 'none' || wrapper.style.display === 'none';
+        
+        if (wasHidden) {
+            book.style.display = 'flex';
+            wrapper.style.display = 'block';
+        }
+        
         book.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // 🔥 Clear search
         document.getElementById('searchInput').value = '';
         document.getElementById('searchResults').style.display = 'none';
+        
+        // 🔥 Re-apply current filter after scroll (if needed)
+        if (wasHidden) {
+            setTimeout(() => filterBooks('All', ''), 1500);
+        }
     }
 }
+
+
 
 // Close search on outside click
 document.addEventListener('click', function(e) {
@@ -424,7 +470,7 @@ function loadSuggestions(category, excludeId) {
     suggestions.forEach(book => {
         const card = document.createElement('div');
         card.className = 'suggestion-card';
-        card.onclick = () => openQuickView(book);
+        card.onclick =  () => openQuickView(book);
         card.style.cursor = 'pointer';
         card.innerHTML = `
             <img src="${book.image}" alt="${book.title}">
@@ -623,9 +669,8 @@ function showNotification(message, type) {
         toast.remove();
     }, 3000);
 }
-
-
        
-</script><script src="script.js"></script>
+ </script>
+ <!-- <script src="script.js"></script>  -->
 </body>
 </html>
