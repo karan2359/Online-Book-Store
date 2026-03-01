@@ -55,14 +55,61 @@
         </nav>
 <!-- Category -->
 <ul class="category">
-            <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
-            <li class="dropdown list" onclick="filterBooks('Fiction', '')">Fiction</li>
-            <li class="dropdown list" onclick="filterBooks('Non-Fiction', '')">Non-Fiction</li>
-            <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics</li>
-            <li class="dropdown list" onclick="filterBooks('Kids', '')">Kids</li>
-            <li class="dropdown list" onclick="filterBooks('Adults', '')">Adults</li>
-            <li class="dropdown list" onclick="filterBooks('Comics', '')">Comics</li>
-            <li class="dropdown list" onclick="filterBooks('Regional Books', '')">Regional Books</li>
+    <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
+            <li class="dropdown list" onclick="filterBooks('Fiction', '')">Fiction
+                <ul>
+                    <li class="a "  onclick="filterBooks('Fiction', 'Classics')">Classics</li>                  
+                    <li  class="a " onclick="filterBooks('Fiction', 'Mythological')">Mythological</li>
+                </ul>
+            </li>
+            <li  class="dropdown list" onclick="filterBooks('Non-Fiction', '')">Non-Fiction
+                <ul>
+                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Self Improvement')">Self Improvement</li>
+                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Biography')">Biography</li>
+                </ul>
+            </li>
+            <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics
+                <ul>              
+                    <li  class="a " onclick="filterBooks('Academics', 'Competitive Exam')">Competitive Exam</li>
+                    <li class="a "  onclick="filterBooks('Academics', 'Entrance exam')">Entrance exam</li>
+                    <li class="a "  onclick="filterBooks('Academics', 'School')"> School</li>
+                    <li class="a "  onclick="filterBooks('Academics', 'General Knowledge')"> General Knowledge</li>
+                    <!-- <li><a href="#"></a></li> -->
+                </ul>
+            </li>
+            
+            <li class="dropdown list" onclick="filterBooks('Kids', '')">Kids
+            <ul>
+                <li  class="a"  onclick="filterBooks('Kids', 'Activity &amp; Puzzles','Activity','Puzzles')"> Activity &amp; Puzzles</li>
+                <li  class="a"  onclick="filterBooks('Kids', 'Colouring &amp; Art book ','Colouring','Art book')"> Colouring &amp; Art book </li>
+                <li  class="a"  onclick="filterBooks('Kids', 'Essay &amp; Letter ','Essay','Letter')"> Essay &amp; Letter </li>
+                <li  class="a"  onclick="filterBooks('Kids', 'Work Book')">Work Book</li>
+                </ul>
+            </li>
+            <li class="dropdown list" onclick="filterBooks('Adults', '')">Adults
+                <ul>
+                    <li  class="a"  onclick="filterBooks('Adults', 'Crime')">Crime</li>
+                    <li  class="a"  onclick="filterBooks('Adults', 'Mystery Thriller')">Mystery Thriller</li>
+                    <lI  class="a"  onclick="filterBooks('Adults', 'Gen Fiction')">Gen Fiction</li>                    
+                    <li  class="a"  onclick="filterBooks('Adults', 'Fantasy Science Fiction')">Fantasy Science Fiction</li>                   
+                    <li  class="a"  onclick="filterBooks('Adults', 'Horror')">Horror</li>
+                </ul>
+            </li>
+
+                <li class="dropdown list" onclick="filterBooks('Comics', '')">Comics
+                <ul>
+                    <li class="a"  onclick="filterBooks('Comics', 'Superhero Comics')">Superhero Comics</li>
+                    <li  class="a" onclick="filterBooks('Comics', 'Manga Comics')">Manga Comics</li>
+                    <li class="a"  onclick="filterBooks('Comics', 'Horror Comics')">Horror Comics</li>
+                </ul>
+            </li>
+            <li class="dropdown list" onclick="filterBooks('Regional Books', '')">Regional Books
+                <ul>
+                    <li  class="a" onclick="filterBooks('', 'Marathi')">Marathi</li>
+                    <li  class="a" onclick="filterBooks('Regional Books', 'Hindi')">Hindi</li>
+                    <li  class="a" onclick="filterBooks('Regional Books', 'Gujarati')">Gujarati</li>
+                </ul>
+            </li>
 </ul>
 </header>
 <main>
@@ -82,7 +129,7 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 onclick='openQuickView(" . $safeBook . ")' style='cursor:pointer;'>
                 <img src='{$book['image']}' alt='{$book['title']}'>
 
-                <div class='book-info'>                
+                <div class='info'>                
                     <div class='category-tag'>Category:{$book['category']} </div>
                     <h3>{$book['title']}</h3>                
                 </div>
@@ -94,32 +141,39 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
 <div class="books-grid" id="booksContainer">
 <?php
 $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
-$booksArray = []; // For JS access
+$booksArray = [];
 while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $booksArray[] = $book; // Store for quick view
-    $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT); // Safe JSON
-   
-
-        
+    $booksArray[] = $book;
+    $safeBook = json_encode($book, JSON_HEX_APOS | JSON_HEX_QUOT);
+    
+    // ✅ FULL SUBCATEGORY PROCESSING
+    $subcat = trim($book['subcategory'] ?? '');
+    if (strpos($subcat, ',') !== false) {
+        $subcat = trim(explode(',', $subcat)[0]); // First subcategory only
+    }
+    
     echo "<div class='books-gridd'>
-    <div class='book-card' data-category='{$book['category']}' data-id='{$book['id']}'
-    onclick='openQuickView(" . $safeBook . ")' style='cursor:pointer;'>
+    <div class='book-card' 
+         data-category='".htmlspecialchars(trim($book['category']))."'
+         data-subcategory='".htmlspecialchars(trim($subcat))."'  
+         data-id='{$book['id']}'
+         onclick='openQuickView(" . $safeBook . "); event.stopPropagation();'
+         style='cursor:pointer;'>
         <img src='{$book['image']}' alt='{$book['title']}'>
-
-            <div class='book-info'>
-                <div class='category-tag'>Category:{$book['category']} </div>
-                <h3>{$book['title']}</h3>
-                <p><strong>✍️ {$book['author']}</strong></p>
-                <p>🏢 {$book['publisher']}</p>
-                <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
-                <!--<p class='desc'>".substr($book['description'] ?? '', 0, 80)."...</p>-->
-                <button class='add-cart-btn' onclick='addToCart({$book['id']})'>🛒 Add to Cart</button>
-            </div>
+        <div class='book-info'>
+            <!-- ✅ SHOW SUBCATEGORY TAG -->
+            <div class='subcategory-tag'>{$book['category']} → {$subcat}</div>
+            <h3>{$book['title']}</h3>
+            <p><strong>✍️ {$book['author']}</strong></p>
+            <p>🏢 {$book['publisher']}</p>
+            <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
+            <button class='add-cart-btn' onclick='addToCart({$book["id"]}); event.stopPropagation();'>🛒 Add to Cart</button>
         </div>
-    </div>";
-
-        }
+    </div>
+</div>";
+}
 ?>
+
 <script>window.books = <?php echo json_encode($booksArray); ?>;</script>
 </div>
     </div>
@@ -148,6 +202,7 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <p><strong>Author:</strong> <span id="qvAuthor"></span></p>
                 <p><strong>Publisher:</strong> <span id="qvPublisher"></span></p>
                 <p><strong>Category:</strong> <span id="qvCategory"></span></p>
+                <p><strong>Subcategory:</strong> <span id="qvSubcategory"></span></p>
                 <p><strong>Price:</strong> <span id="qvPrice" class="price"></span></p>
                 <div id="qvDescription" class="description"></div>
                 <div class="qv-actions">
@@ -171,31 +226,31 @@ while ($book = $stmt->fetch(PDO::FETCH_ASSOC)) {
 <script>
     window.books = <?php echo json_encode($booksArray); ?>;
 // Filter by Category 
-        function filterBooks(mainCategory) {
-            const books = document.querySelectorAll('.book-card');
-            let visibleCount = 0;
-            
-            books.forEach(book => {
-                const bookCategory = book.dataset.category;
-              
-                
-                if (mainCategory === 'All') {
-                    book.style.display = 'block';
-                    visibleCount++;
-                } 
-                else if (mainCategory === bookCategory ) {
-                    book.style.display = 'block';
-                    visibleCount++;
-                } 
-                else {
-                    book.style.display = 'none';
-                }
-            });
-                  
-            // Show result count
-            document.getElementById('resultCount').textContent = 
-                visibleCount + ' books found';
+       function filterBooks(mainCategory, subcategory = '') {
+    const books = document.querySelectorAll('.book-card');
+    let visibleCount = 0;
+    
+    books.forEach(book => {
+        const bookCat = book.dataset.category?.toLowerCase().trim() || '';
+        const bookSub = book.dataset.subcategory?.toLowerCase().trim() || '';
+        const filterCat = mainCategory.toLowerCase().trim();
+        const filterSub = subcategory.toLowerCase().trim();
+        
+        // ✅ PERFECT SUBCATEGORY LOGIC
+        if (filterCat === 'all' || 
+            (filterCat === bookCat && (filterSub === '' || filterSub === bookSub))) {
+            book.style.display = 'block';
+            book.parentElement.style.display = 'block';
+            visibleCount++;
+        } else {
+            book.style.display = 'none';
+            book.parentElement.style.display = 'none';
         }
+    });
+    
+    console.log(`✅ ${mainCategory}/${subcategory} → ${visibleCount} books`);
+}
+
 
         // Add to cart with category info
         function addToCart(bookId, title, price, category) {
@@ -293,6 +348,7 @@ function openQuickView(book) {
     document.getElementById('qvAuthor').textContent = book.author || 'N/A';
     document.getElementById('qvPublisher').textContent = book.publisher || 'N/A';
     document.getElementById('qvCategory').textContent = book.category || 'N/A';
+    document.getElementById('qvSubcategory').textContent = book.subcategory || 'N/A';
     document.getElementById('qvPrice').textContent = '₹' + (book.price || 0);
     document.getElementById('qvDescription').textContent = book.description || 'No description available.';
     document.getElementById('qvBookImage').src = book.image || 'asset/no-image.png';

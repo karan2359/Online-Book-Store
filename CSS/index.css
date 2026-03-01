@@ -295,7 +295,7 @@ main {
     /* -webkit-box-orient: vertical; */
 }
 
-.category-tag {
+.subcategory-tag {
     font-size: 0.75em;
     color: black;
     background: #f8f9fa;
@@ -303,6 +303,16 @@ main {
     border-radius: 12px;
     align-self: flex-start;
 }
+/* .subcategory-tag {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: inline-block;
+} */
 
 /* Price & Button */
 .price {

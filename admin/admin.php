@@ -25,9 +25,9 @@ if (isset($_POST['add_book'])) {
     }
     
  
-    $stmt = $pdo->prepare("INSERT INTO books (title, author, publisher, category, subcategory, price, description, image, created_at) VALUES (?, ?, ?, ?, null, ?, ?, ?, NOW())");
-    $stmt->execute([$title, $author, $publisher, $category, $price, $description, $image]);
-    echo "<div class='success'>✅ Book '$title' ($category) added successfully!</div>";
+    $stmt = $pdo->prepare("INSERT INTO books (title, author, publisher, category, subcategory, price, description, image, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->execute([$title, $author, $publisher, $category,$subcategory, $price, $description, $image]);
+    echo "<div class='success'>✅ Book '$title' ($category > $subcategory) added successfully!</div>";
 }
 ?>
 
@@ -64,7 +64,7 @@ if (isset($_POST['add_book'])) {
             <input type="text" name="publisher" placeholder="Publisher" required>
             
             <label>📂 Main Category</label>
-            <select name="category" id="categorySelect" required>
+            <select name="category" id="categorySelect"  onchange="loadSubcategories()" required>
                 <option value="">Select Main Category</option>
                 <option value="Fiction"> Fiction</option>
                 <option value="Non-Fiction"> Non-Fiction</option>
@@ -75,12 +75,12 @@ if (isset($_POST['add_book'])) {
                 <option value="Regional Books"> Regional Books</option>
             </select>
             
-            <!-- <label>📋 Subcategory</label>
-            <!-- <label>📋 Subcategory</label>
+           
+            <label>📋 Subcategory</label>
             <select name="subcategory" id="subcategorySelect" required>
                 <option value="">First select category</option>
-            </select> -->
-            </select> -->
+            </select>
+
             
             <label>💰 Price (₹)</label>
             <input type="number" name="price" step="0.01" min="0" placeholder="99.99" required>
@@ -105,7 +105,7 @@ if (isset($_POST['add_book'])) {
             echo "<h4>{$book['title']}</h4>";
             echo "<p><strong>✍️ {$book['author']}</strong></p>";
             echo "<p>💰 ₹{$book['price']}</p>";
-            echo "<p><strong>📂 {$book['category']}</strong></p>";
+            echo "<p><strong>📂 {$book['category']} / {$book['subcategory']}</strong></p>";
             if ($book['image']) {
                 echo "<img src='../{$book['image']}' alt='{$book['title']}' loading='lazy'>";
             }
@@ -115,6 +115,30 @@ if (isset($_POST['add_book'])) {
             echo "</div></div>";
         }
         ?>
-    </div>    
+    </div>
+     <script>
+    // Dynamic subcategory loader
+    function loadSubcategories() {
+        const category = document.getElementById('categorySelect').value;
+        const subcatSelect = document.getElementById('subcategorySelect');
+        
+        const subcategories = {
+            'Fiction': ['Classics', 'Mythological'],
+            'Non-Fiction': ['Self Improvement', 'Biography'],
+            'Academics': ['Competitive Exam', 'Entrance exam', 'School', 'General Knowledge'],
+            'Kids': ['Activity & Puzzles', 'Colouring & Art book', 'Essay & Letter', 'Work Book'],
+            'Adults': ['Crime', 'Mystery Thriller', 'Gen Fiction', 'Fantasy Science Fiction', 'Horror'],
+            'Comics': ['Superhero Comics', 'Manga Comics', 'Horror Comics'],
+            'Regional Books': ['Marathi', 'Hindi', 'Gujarati']
+        };
+        
+        subcatSelect.innerHTML = '<option value="">Select Subcategory</option>';
+        if (subcategories[category]) {
+            subcategories[category].forEach(subcat => {
+                subcatSelect.innerHTML += `<option value="${subcat}">${subcat}</option>`;
+            });
+        }
+    }
+    </script>    
 </body>
 </html>

@@ -43,8 +43,8 @@ if (isset($_POST['update_book'])) {
         }
     }
     
-    $stmt = $pdo->prepare("UPDATE books SET title=?, author=?, publisher=?, category=?, subcategory=null, price=?, description=?, image=? WHERE id=?");
-    $stmt->execute([$title, $author, $publisher, $category, $price, $description, $image, $id]);
+    $stmt = $pdo->prepare("UPDATE books SET title=?, author=?, publisher=?, category=?, subcategory=?, price=?, description=?, image=? WHERE id=?");
+    $stmt->execute([$title, $author, $publisher, $category, $subcategory, $price, $description, $image, $id]);
     
     header('Location: admin.php?updated=1');
     exit;
@@ -168,9 +168,10 @@ if (isset($_POST['update_book'])) {
                 <option value="Regional Books" <?php echo $book['category']=='Regional Books'?'selected':'';?>>🌍 Regional Books</option>
             </select>
             
-            <!-- <label>📋 Subcategory</label>
-            <input type="text" name="subcategory" value="<?php echo htmlspecialchars($book['subcategory']); ?>" placeholder="Enter subcategory" required> -->
-            
+            <label>📋 Subcategory</label>
+            <select name="subcategory" id="subcategorySelect" required>
+                <option value="">First select category</option>
+            </select>
             <label>💰 Price (₹)</label>
             <input type="number" name="price" step="0.01" min="0" value="<?php echo $book['price']; ?>" required>
             
@@ -186,7 +187,29 @@ if (isset($_POST['update_book'])) {
         
         <a href="admin.php" class="back-btn">← Back to Admin Panel</a>
     </div>
-
+ <script>
+     function loadSubcategories() {
+        const category = document.getElementById('categorySelect').value;
+        const subcatSelect = document.getElementById('subcategorySelect');
+        
+        const subcategories = {
+            'Fiction': ['Classics', 'Mythological'],
+            'Non-Fiction': ['Self Improvement', 'Biography'],
+            'Academics': ['Competitive Exam', 'Entrance exam', 'School', 'General Knowledge'],
+            'Kids': ['Activity & Puzzles', 'Colouring & Art book', 'Essay & Letter', 'Work Book'],
+            'Adults': ['Crime', 'Mystery Thriller', 'Gen Fiction', 'Fantasy Science Fiction', 'Horror'],
+            'Comics': ['Superhero Comics', 'Manga Comics', 'Horror Comics'],
+            'Regional Books': ['Marathi', 'Hindi', 'Gujarati']
+        };
+        
+        subcatSelect.innerHTML = '<option value="">Select Subcategory</option>';
+        if (subcategories[category]) {
+            subcategories[category].forEach(subcat => {
+                subcatSelect.innerHTML += `<option value="${subcat}">${subcat}</option>`;
+            });
+        }
+    }
+    </script>
 
 </body>
 </html>
