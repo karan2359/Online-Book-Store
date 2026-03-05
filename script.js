@@ -1,40 +1,4 @@
-// let cart = [];
 
-
-
-// Place order function
-function placeOrder() {
-    if (cart.length === 0) {
-        alert('🛒 Your cart is empty!');
-        return;
-    }
-    
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
-    if (confirm(`Place order for ₹${total.toFixed(2)}?`)) {
-        fetch('place_order.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 
-                cart: cart,
-                total_amount: total
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('✅ Order placed successfully! Order ID: ' + data.order_id);
-                cart = [];
-                updateCartCount();
-                window.location.href = 'orders.php';
-            } else {
-                alert('❌ Order failed: ' + data.message);
-            }
-        });
-    }
-}
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {

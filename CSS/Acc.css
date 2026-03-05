@@ -39,6 +39,9 @@
             color: #a8a2a2;
             
         }
+        .not_login p{
+            margin: 15px 55px;
+        }
         .not_login a{
             color: #a8a2a2;
             /* color: #666; */
@@ -100,7 +103,7 @@
         }
         /* Account Status */
         .sesions {
-            position: relative;
+        position: relative;
         left: 220px;
         margin: 30px;
         width: 80%;        
@@ -176,6 +179,9 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
             gap: 20px; 
             margin-bottom: 30px;
+            font-weight: 500;
+            font-size: 20px; 
+
         }
         .detail-card { 
             padding: 20px; 
@@ -187,11 +193,6 @@
             text-transform: uppercase; 
             letter-spacing: 1px;
             margin-bottom: 5px;
-        }
-        .detail-value { 
-            font-size: 20px; 
-            color: white; 
-            font-weight: 500;
         }
         .stats-grid { 
             display: grid; 
@@ -208,33 +209,3 @@
             transition: all 0.3s ease;
         }
         .stat-icon { font-size: 2.5em; margin-bottom: 10px; }
-        .action-buttons { 
-            display: flex; 
-            gap: 15px; 
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .btn { 
-            padding: 15px 30px; 
-            border: none; 
-            border-radius: 15px; 
-            font-size: 16px; 
-            font-weight: 500; 
-            cursor: pointer; 
-            text-decoration: none; 
-            display: inline-block; 
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        .btn-primary { 
-            background: linear-gradient(135deg, #48bb78, #38a169); 
-            color: white; 
-        }
-        .btn-secondary { 
-            background: linear-gradient(135deg, #4299e1, #3182ce); 
-            color: white; 
-        }
-        .btn-logout { 
-            background: linear-gradient(135deg, #f56565, #e53e3e); 
-            color: white; 
-        }

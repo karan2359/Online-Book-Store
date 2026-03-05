@@ -1,5 +1,39 @@
-<?php include_once 'config.php';
- ?>
+<?php
+include_once 'config.php';
+
+/* ========= AJAX quantity update ========= */
+if (isset($_POST['action']) && $_POST['action'] === 'update_quantity') {
+
+    header('Content-Type: application/json');
+
+    if (!isLoggedIn()) {
+        echo json_encode(['success' => false]);
+        exit;
+    }
+
+    $cart_id  = $_POST['cart_id'];
+    $quantity = $_POST['quantity'];
+
+    if ($quantity < 1) {
+        $quantity = 1;
+    }
+
+    $stmt = $pdo->prepare("
+        UPDATE cart 
+        SET quantity = ?
+        WHERE id = ? AND user_id = ?
+    ");
+    $stmt->execute([
+        $quantity,
+        $cart_id,
+        $_SESSION['user_id']
+    ]);
+
+    echo json_encode(['success' => true]);
+    exit; // ⬅️ IMPORTANT 
+}
+/* ========= END AJAX ========= */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +129,7 @@
                     <td>
                         <input type="number" class="quantity-input" 
                                value="<?= $item['quantity'] ?>" 
-                               min="1" onchange="updateQuantity(<?= $item['book_id'] ?>, this.value)">
+                               min="1" onchange="updateQuantity(<?= $item['id'] ?>, this.value)">
                     </td>
                     <td>₹<?= number_format($subtotal, 2) ?></td>
                     <td>
@@ -133,44 +167,24 @@
     </div>
 
     <script>
-        // Update quantity
-        function updateQuantity(bookId, quantity) {
-            fetch('update_cart.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                body: `book_id=${bookId}&quantity=${quantity}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload(); // Refresh cart page
-                }
-            });
+function updateQuantity(cartId, quantity) {
+    fetch('cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `action=update_quantity&cart_id=${cartId}&quantity=${quantity}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('Update failed');
         }
-        function removeFromCart(cartItemId) {
-    if (confirm('Remove this item from cart?')) {
-        fetch('remove_from_cart.php', {
-            **method: 'POST',**  // ✅ MUST BE POST
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            **body: 'cart_item_id=' + cartItemId**  // ✅ POST data
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();  // Refresh cart page
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch(error => {
-            alert('Network error: ' + error);
-        });
-    }
+    });
 }
-
-    </script>
+</script>
     <script src="script.js"></script>
 </body>
 </body>

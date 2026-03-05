@@ -265,27 +265,14 @@ function filterBooks(cat, subcat = '') {
             book.style.display = 'none';
             wrapper.style.display = 'none';
         }
+       document.getElementById('booksContainer').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
     });
     
-    console.log(`✅ ${count} books shown`);
-    document.title = `Books: ${count}`;
+    });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Add to cart with category info
+// Add to cart with category info
         function addToCart(bookId, title, price, category) {
             //  cart logic
             fetch('add_to_cart.php', {
@@ -315,7 +302,7 @@ function searchBooks(query) {
         return;
     }
     
-    // 🔥 ONLY MAIN CONTAINER BOOKS (NOT suggestions!)
+    //  ONLY MAIN CONTAINER BOOKS
     const mainBooks = document.querySelectorAll('#booksContainer .book-card');
     
     mainBooks.forEach(book => {
@@ -356,7 +343,7 @@ function searchBooks(query) {
 function scrollToBook(bookId) {
     const book = document.querySelector(`#booksContainer [data-id="${bookId}"]`);
     if (book) {
-        // 🔥 Show book temporarily + scroll
+        //  Show book temporarily + scroll
         const wrapper = book.closest('.books-gridd');
         const wasHidden = book.style.display === 'none' || wrapper.style.display === 'none';
         
@@ -367,11 +354,11 @@ function scrollToBook(bookId) {
         
         book.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
-        // 🔥 Clear search
+        //  Clear search
         document.getElementById('searchInput').value = '';
         document.getElementById('searchResults').style.display = 'none';
         
-        // 🔥 Re-apply current filter after scroll (if needed)
+        //  Re-apply current filter after scroll (if needed)
         if (wasHidden) {
             setTimeout(() => filterBooks('All', ''), 1500);
         }
@@ -671,6 +658,5 @@ function showNotification(message, type) {
 }
        
  </script>
- <!-- <script src="script.js"></script>  -->
 </body>
 </html>
