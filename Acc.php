@@ -86,9 +86,9 @@ $avatar_initial = strtoupper(substr($user['fullname'], 0, 1));
                         <div class="detail-value"><?= $user['mobile'] ?: 'Not provided' ?></div>
                     </div>
                     <div class="detail-card">
-                        <div class="detail-label">City/State</div>
-                        <div class="detail-value"><?= $user['city'] ?: 'Not provided' ?>,</div>
-                        <div class="detail-value"><?= $user['state'] ?: 'Not provided' ?></div>
+                        <div class="detail-label">City/State  </div>
+                        <div class="detail-value"><?= $user['city'] ?: 'Not provided' ?>,<?= $user['state'] ?: 'Not provided' ?></div>
+                        <!-- <div class="detail-value"></div> -->
                     </div>
                     
                     <?php if ($user['is_admin']): ?>
